@@ -1,26 +1,19 @@
-/* globals.css (or your main global CSS file) */
+/* globals.css */
 
 @import "tailwindcss";
 
 @theme {
-  /* --- Light Mode Colors --- */
+  /* ... (your existing @theme definitions) ... */
   --color-lightHover: #fcf4ff;
-  /* Add other light mode specific colors if you have them */
-
-  /* --- Dark Mode Colors --- */
   --color-darkHover: #2a004a;
-  --color-darkTheme: #11001F; /* This is your primary dark theme background color */
-  /* You might also define --color-dark-text, --color-dark-border, etc. */
+  --color-darkTheme: #11001F;
 
-  /* Custom Font Families */
   --font-Outfit: var(--font-outfit);
   --font-Ovo: var(--font-ovo);
 
-  /* Custom Box Shadows */
   --shadow-black: 4px 4px 0 #000;
-  --shadow-white: 4px 4px 0 #fff;
+  --shadow-white: 4px 4px 0 #fff; /* Keep this as is for light mode */
 
-  /* Custom Grid Template Columns */
   --grid-auto: repeat(auto-fit, minmax(200px, 1fr));
 }
 
@@ -29,9 +22,12 @@
    -------------------------------------------------------------------
 */
 
-/* Example of applying a base dark mode background and text color globally */
 html.dark {
-  background-color: var(--color-darkTheme); /* Apply your dark theme background */
-  color: #e0e0e0; /* A light text color for dark mode */
+  background-color: var(--color-darkTheme);
+  color: #e0e0e0;
 }
 
+/* Explicit dark mode shadow for the nav when scrolled */
+.nav-scrolled-dark-shadow {
+  box-shadow: 4px 4px 0 rgba(255, 255, 255, 0.2); /* White shadow with 20% opacity */
+}

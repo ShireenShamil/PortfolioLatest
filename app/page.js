@@ -10,7 +10,7 @@ import Work from "./components/Work";
 
 export default function Home() {
 
-  const [isDarkMode , setIsDarkMode ] = useState(true);
+  const [isDarkMode , setIsDarkMode ] = useState(false);
 
   useEffect(() => {
     if(localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)){
