@@ -22,12 +22,15 @@
    -------------------------------------------------------------------
 */
 
-html.dark {
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* html.dark {
   background-color: var(--color-darkTheme);
   color: #e0e0e0;
-}
+} */
 
 /* Explicit dark mode shadow for the nav when scrolled */
-.nav-scrolled-dark-shadow {
+/* .nav-scrolled-dark-shadow {
   box-shadow: 4px 4px 0 rgba(255, 255, 255, 0.2); /* White shadow with 20% opacity */
-}
+/* } 
+*/ 
