@@ -12,7 +12,7 @@ import backend_icon from './backend_icon.png';
 import database_icon from './database_icon.png';
 import tools_icon from './tools_icon.png';
 
-// Tech-specific icons for detailed dialog
+// Tech-specific icons
 import html_icon from './html-icon.png';
 import css_icon from './css-icon.png';
 import js_icon from './js-icon.png';
@@ -22,19 +22,19 @@ import tailwind_icon from './tailwind-icon.png';
 import bootstrap_icon from './bootstrap-icon.png';
 import node_icon from './node-icon.png';
 import express_icon from './express-icon.png';
-import mongodb from './mongodb.png';       // already existed
-import git from './git.png';               // already existed
-import figma from './figma.png';           // already existed
-import vscode from './vscode.png';         // already existed
-import firebase from './firebase.png';     // ✅ ADDED this missing import
+import mongodb from './mongodb.png';
+import git from './git.png';
+import figma from './figma.png';
+import vscode from './vscode.png';
+import firebase from './firebase.png';
 
-// Other existing UI & service icons
+// Other UI & service icons
 import web_icon from './web-icon.png';
 import mobile_icon from './mobile-icon.png';
 import ui_icon from './ui-icon.png';
 import graphics_icon from './graphics-icon.png';
 
-// Other utility icons
+// Utility icons
 import right_arrow_white from './right-arrow-white.png';
 import logo from './logo.png';
 import logo_dark from './logo_dark.png';
@@ -56,6 +56,13 @@ import right_arrow from './right-arrow.png';
 import send_icon from './send-icon.png';
 import right_arrow_bold from './right-arrow-bold.png';
 import right_arrow_bold_dark from './right-arrow-bold-dark.png';
+
+// New icons for education
+import school_icon from './school.png';
+import school_icon_dark from './school.png';
+import university_icon from './university.png';
+import result_icon from './result.png';
+import aquinas_icon from './aquinas.png';
 
 export const assets = {
   user_image,
@@ -85,7 +92,7 @@ export const assets = {
   git,
   figma,
   vscode,
-  firebase,    // ✅ included here
+  firebase,
 
   web_icon,
   mobile_icon,
@@ -113,6 +120,12 @@ export const assets = {
   send_icon,
   right_arrow_bold,
   right_arrow_bold_dark,
+
+  school_icon,
+  school_icon_dark,
+  university_icon,
+  result_icon,
+  aquinas_icon,
 };
 
 export const workData = [
@@ -140,12 +153,9 @@ export const infoList = [
         icon: assets.frontend_icon,
         items: [
           { name: 'HTML', icon: assets.html_icon },
-          { name: 'CSS', icon: assets.css_icon },
           { name: 'JavaScript', icon: assets.js_icon },
           { name: 'React.js', icon: assets.react_icon },
           { name: 'Next.js', icon: assets.next_icon },
-          { name: 'Tailwind CSS', icon: assets.tailwind_icon },
-          { name: 'Bootstrap', icon: assets.bootstrap_icon },
         ],
       },
       Backend: {
@@ -153,6 +163,14 @@ export const infoList = [
         items: [
           { name: 'Node.js', icon: assets.node_icon },
           { name: 'Express.js', icon: assets.express_icon },
+        ],
+      },
+      Styling: {
+        icon: assets.frontend_icon,
+        items: [
+          { name: 'CSS', icon: assets.css_icon },
+          { name: 'Tailwind CSS', icon: assets.tailwind_icon },
+          { name: 'Bootstrap', icon: assets.bootstrap_icon },
         ],
       },
       Database: {
@@ -175,15 +193,74 @@ export const infoList = [
     icon: assets.edu_icon,
     iconDark: assets.edu_icon_dark,
     title: 'Education',
-    description: 'B.Tech in Computer Science',
+    description: 'Academic journey from school to university',
+    more: {
+      School: {
+        icon: assets.school_icon,
+        items: [
+          { name: 'Panadura Central College', icon: assets.school_icon },
+          { name: 'G.C.E O/L - 8AB passes', icon: assets.result_icon },
+          { name: 'G.C.E A/L - 2AB passes (Bio Stream - Z 1.75)', icon: assets.result_icon },
+        ],
+      },
+      'Higher Studies': {
+        icon: assets.aquinas_icon,
+        items: [
+          { name: 'Aquinas College of Higher Studies', icon: assets.aquinas_icon },
+          { name: 'HnD in English Language & Literature', icon: assets.result_icon },
+        ],
+      },
+      University: {
+        icon: assets.university_icon,
+        items: [
+          { name: 'University of Moratuwa', icon: assets.university_icon },
+          { name: 'L1S1 – GPA 3.22', icon: assets.result_icon },
+          { name: 'L1S2 – GPA 3.82 (Dean List)', icon: assets.result_icon },
+          { name: 'L2S1 – GPA 3.84 (Dean List)', icon: assets.result_icon },
+        ],
+      },
+    },
   },
   {
     icon: assets.project_icon,
     iconDark: assets.project_icon_dark,
-    title: 'Projects',
-    description: 'Built more than 5 projects',
+    title: 'Certifications',
+    description: 'Completed multiple professional courses',
+    more: {
+      Courses: {
+        icon: assets.project_icon,
+        items: [
+          {
+            name: 'JavaScript Algorithms and Data Structures',
+            icon: null,
+            link: 'https://www.freecodecamp.org/certification/fcc12345/javascript-algorithms-and-data-structures',
+          },
+          {
+            name: 'React - The Complete Guide',
+            icon: null,
+            link: 'https://www.udemy.com/certificate/UC-abcdef1234/',
+          },
+          {
+            name: 'MongoDB Basics',
+            icon: null,
+            link: 'https://university.mongodb.com/course_completion/certificate123',
+          },
+          {
+            name: 'Node.js Developer Certification',
+            icon: null,
+            link: 'https://nodejs.org/certificates/nodejs-certification.pdf',
+          },
+          {
+            name: 'Tailwind CSS Fundamentals',
+            icon: null,
+            link: 'https://tailwindcss.com/certification/tailwind-fundamentals',
+          },
+        ],
+      },
+    },
   },
 ];
+
 
 export const toolsData = [
   assets.vscode,

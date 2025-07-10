@@ -120,12 +120,17 @@ const About = ({ isDarkMode }) => {
 
       {/* Dialog */}
       {openDialog && (
-        <div className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center px-2 sm:px-6">
+        <div
+          className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center px-2 sm:px-6 overflow-y-auto"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="dialog-title"
+        >
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
-            className="bg-white dark:bg-darkTheme rounded-2xl shadow-2xl max-w-[95vw] sm:max-w-2xl w-full p-6 sm:p-10 relative max-h-[90vh] overflow-auto"
+            className="bg-white dark:bg-darkTheme rounded-2xl shadow-2xl max-w-[95vw] sm:max-w-5xl w-full p-6 sm:p-10 relative max-h-[90vh] overflow-auto"
           >
             <button
               onClick={handleDialogClose}
@@ -134,37 +139,48 @@ const About = ({ isDarkMode }) => {
             >
               ×
             </button>
-            <h3 className="text-2xl sm:text-4xl font-bold mb-6 text-gray-800 dark:text-white">{dialogContent.title}</h3>
+            <h3
+              id="dialog-title"
+              className="text-2xl sm:text-4xl font-bold mb-6 text-gray-800 dark:text-white"
+            >
+              {dialogContent.title}
+            </h3>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
-              {Object.entries(dialogContent.content).flatMap(([section, { icon, items }], sectionIdx) =>
-                items.map(({ name, icon }, itemIdx) => {
-                  const duration = 2 + Math.random() * 2;
-                  const offset = 10 + Math.random() * 8;
+            {/* 3 boxes grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+              {Object.entries(dialogContent.content).map(([section, { icon, items }]) => (
+                <div
+                  key={section}
+                  className="bg-white dark:bg-white/10 rounded-xl p-6 shadow-md border border-white/20 flex flex-col"
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    {icon && <Image src={icon} alt={section} width={30} height={30} />}
+                    <h4 className="text-lg font-semibold text-gray-700 dark:text-white">{section}</h4>
+                  </div>
+                 <ul className="flex flex-col gap-3">
+  {items.map(({ name, icon, link }, idx) => (
+    <li key={idx} className="flex items-center gap-3">
+      {icon && <Image src={icon} alt={name} width={24} height={24} />}
+      {link ? (
+        <a
+          href={link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-600 hover:underline dark:text-blue-400 font-medium text-sm sm:text-base"
+        >
+          {name}
+        </a>
+      ) : (
+        <span className="text-gray-800 dark:text-white text-sm sm:text-base font-medium">
+          {name}
+        </span>
+      )}
+    </li>
+  ))}
+</ul>
 
-                  return (
-                    <motion.div
-                      key={`${sectionIdx}-${itemIdx}`}
-                      className="flex items-center gap-3 p-4 rounded-xl bg-white/80 dark:bg-white/10 shadow-md backdrop-blur-md border border-white/20 min-w-0"
-                      animate={{
-                        y: [0, offset, -offset, 0],
-                      }}
-                      transition={{
-                        duration,
-                        repeat: Infinity,
-                        repeatType: 'mirror',
-                        ease: 'easeInOut',
-                        delay: Math.random() * 1.5,
-                      }}
-                    >
-                      {icon && <Image src={icon} alt={name} width={30} height={30} />}
-                      <span className="text-gray-800 dark:text-white text-sm sm:text-base font-medium">
-                        {name}
-                      </span>
-                    </motion.div>
-                  );
-                })
-              )}
+                </div>
+              ))}
             </div>
           </motion.div>
         </div>
