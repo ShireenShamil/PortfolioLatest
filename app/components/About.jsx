@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import React, { useState } from 'react';
 import { assets, infoList, toolsData } from '@/assets/assets';
 import Image from 'next/image';
@@ -21,7 +21,7 @@ const About = ({ isDarkMode }) => {
       whileInView={{ opacity: 1 }}
       transition={{ duration: 1 }}
       id="about"
-      className="w-full px-[12%] py-10 scroll-mt-20"
+      className="w-full px-6 sm:px-[12%] py-10 scroll-mt-20"
     >
       {/* Headings */}
       <motion.h4
@@ -36,7 +36,7 @@ const About = ({ isDarkMode }) => {
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.5 }}
-        className="text-center text-5xl font-Ovo"
+        className="text-center text-4xl sm:text-5xl font-Ovo"
       >
         About Me
       </motion.h2>
@@ -46,14 +46,14 @@ const About = ({ isDarkMode }) => {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="flex w-full flex-col lg:flex-row items-center gap-20 my-20"
+        className="flex w-full flex-col lg:flex-row items-center gap-10 sm:gap-20 my-10 sm:my-20"
       >
         {/* Image */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6 }}
-          className="w-64 sm:w-80 rounded-3xl max-w-none"
+          className="w-48 sm:w-64 md:w-80 rounded-3xl max-w-none"
         >
           <Image src={assets.user_image} alt="User" className="w-full rounded-3xl" />
         </motion.div>
@@ -65,7 +65,7 @@ const About = ({ isDarkMode }) => {
           transition={{ duration: 0.6, delay: 0.8 }}
           className="flex-1"
         >
-          <p className="mb-10 max-w-2xl font-Ovo">
+          <p className="mb-8 sm:mb-10 max-w-2xl font-Ovo text-base sm:text-lg">
             Hi, I'm Shireen Shamil — a passionate and curious individual who loves learning, creating, and growing. I enjoy working on meaningful projects, solving real-world problems, and constantly improving my skills.
           </p>
 
@@ -73,18 +73,19 @@ const About = ({ isDarkMode }) => {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 1 }}
-            className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-2xl"
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-2xl"
           >
-            {infoList.map(({ icon, iconDark, title, description, more }, index) => (
+            {infoList.map(({ icon, iconDark, title, more }, index) => (
               <motion.li
                 whileHover={{ scale: 1.05 }}
                 key={index}
                 onClick={() => more && handleDialogOpen(title, more)}
-                className="border-[0.5px] border-gray-400 rounded-xl p-6 cursor-pointer duration-500 hover:-translate-y-1 hover:[box-shadow:4px_4px_0_#000] hover:[background-color:#fcf4ff] dark:border-white dark:shadow-white dark:hover:bg-darkHover/50"
+                className="border-[0.5px] border-gray-400 rounded-xl p-6 sm:p-8 cursor-pointer duration-500 hover:-translate-y-1 hover:[box-shadow:6px_6px_0_#000] hover:[background-color:#fcf4ff] dark:border-white dark:shadow-white dark:hover:bg-darkHover/50"
               >
-                <Image src={isDarkMode ? iconDark : icon} alt={title} className="w-7 mt-3" />
-                <h3 className="my-4 font-semibold text-gray-700 dark:text-white">{title}</h3>
-                <p className="text-gray-600 text-sm dark:text-white/80">{description}</p>
+                <Image src={isDarkMode ? iconDark : icon} alt={title} className="w-10 sm:w-12 mt-2" />
+                <h3 className="my-4 sm:my-6 font-semibold text-gray-700 dark:text-white text-lg sm:text-xl">
+                  {title}
+                </h3>
               </motion.li>
             ))}
           </motion.ul>
@@ -94,7 +95,7 @@ const About = ({ isDarkMode }) => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 1.3 }}
-            className="my-6 text-gray-700 font-Ovo dark:text-white/80"
+            className="my-8 text-gray-700 font-Ovo dark:text-white/80 text-xl"
           >
             Tools I use
           </motion.h4>
@@ -102,15 +103,15 @@ const About = ({ isDarkMode }) => {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 1.5 }}
-            className="flex items-center gap-3 sm:gap-5"
+            className="flex items-center gap-4 sm:gap-6 flex-wrap"
           >
             {toolsData.map((tool, index) => (
               <motion.li
-                whileInView={{ scale: 1.1 }}
+                whileInView={{ scale: 1.15 }}
                 key={index}
-                className="flex items-center justify-center w-12 sm:w-14 aspect-square border border-gray-400 rounded-lg cursor-pointer duration-500 hover:-translate-y-1"
+                className="flex items-center justify-center w-10 sm:w-15 aspect-square border-2 border-gray-400 rounded-lg cursor-pointer duration-500 hover:-translate-y-1"
               >
-                <Image src={tool} alt="tool" className="w-5 sm:w-7" />
+                <Image src={tool} alt="tool" className="w-6 sm:w-8" />
               </motion.li>
             ))}
           </motion.ul>
@@ -119,39 +120,51 @@ const About = ({ isDarkMode }) => {
 
       {/* Dialog */}
       {openDialog && (
-        <div className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center px-4">
+        <div className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center px-2 sm:px-6">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
-            className="bg-white dark:bg-darkTheme rounded-xl shadow-xl max-w-2xl w-full p-6 relative max-h-[80vh] overflow-y-auto"
+            className="bg-white dark:bg-darkTheme rounded-2xl shadow-2xl max-w-[95vw] sm:max-w-2xl w-full p-6 sm:p-10 relative max-h-[90vh] overflow-auto"
           >
             <button
               onClick={handleDialogClose}
-              className="absolute top-2 right-3 text-gray-600 dark:text-white text-2xl font-bold"
+              className="absolute top-3 right-5 text-gray-600 dark:text-white text-3xl sm:text-4xl font-bold"
               aria-label="Close dialog"
             >
               ×
             </button>
-            <h3 className="text-2xl font-bold mb-4 text-gray-800 dark:text-white">{dialogContent.title}</h3>
+            <h3 className="text-2xl sm:text-4xl font-bold mb-6 text-gray-800 dark:text-white">{dialogContent.title}</h3>
 
-            <div className="space-y-6">
-              {Object.entries(dialogContent.content).map(([section, { icon, items }], idx) => (
-                <div key={idx}>
-                  <div className="flex items-center gap-2 mb-2">
-                    {icon && <Image src={icon} alt={section} width={28} height={28} />}
-                    <h4 className="font-semibold text-lg text-gray-800 dark:text-white">{section}</h4>
-                  </div>
-                  <ul className="list-disc ml-6 text-gray-700 dark:text-white/80 text-sm grid grid-cols-2 sm:grid-cols-3 gap-y-2 gap-x-4">
-                    {items.map(({ name, icon }, index) => (
-                      <li key={index} className="flex items-center gap-2">
-                        {icon && <Image src={icon} alt={name} width={22} height={22} />}
-                        <span>{name}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
+              {Object.entries(dialogContent.content).flatMap(([section, { icon, items }], sectionIdx) =>
+                items.map(({ name, icon }, itemIdx) => {
+                  const duration = 2 + Math.random() * 2;
+                  const offset = 10 + Math.random() * 8;
+
+                  return (
+                    <motion.div
+                      key={`${sectionIdx}-${itemIdx}`}
+                      className="flex items-center gap-3 p-4 rounded-xl bg-white/80 dark:bg-white/10 shadow-md backdrop-blur-md border border-white/20 min-w-0"
+                      animate={{
+                        y: [0, offset, -offset, 0],
+                      }}
+                      transition={{
+                        duration,
+                        repeat: Infinity,
+                        repeatType: 'mirror',
+                        ease: 'easeInOut',
+                        delay: Math.random() * 1.5,
+                      }}
+                    >
+                      {icon && <Image src={icon} alt={name} width={30} height={30} />}
+                      <span className="text-gray-800 dark:text-white text-sm sm:text-base font-medium">
+                        {name}
+                      </span>
+                    </motion.div>
+                  );
+                })
+              )}
             </div>
           </motion.div>
         </div>

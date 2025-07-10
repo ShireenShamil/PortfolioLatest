@@ -133,7 +133,7 @@ export const infoList = [
   {
     icon: assets.code_icon,
     iconDark: assets.code_icon_dark,
-    title: 'Languages',
+    title: 'Technologies',
     description: 'HTML, CSS, JavaScript, React Js, Next Js',
     more: {
       Frontend: {
