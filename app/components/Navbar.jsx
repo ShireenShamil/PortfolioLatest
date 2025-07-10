@@ -42,7 +42,7 @@ const Navbar = ({isDarkMode , setIsDarkMode}) => {
    <nav
   className={`w-full fixed px-5 lg:px-8 xl:px-[8%] py-4
     flex items-center justify-between z-50
-    ${isScroll ? "bg-white bg-opacity-50 backdrop-blur-lg shadow-sm" : ""}`}
+    ${isScroll ? "bg-white bg-opacity-50 backdrop-blur-lg shadow-sm dark:bg-darkTheme" : ""}`}
 >
 
         <a href='#top'>
