@@ -56,6 +56,7 @@ import right_arrow from './right-arrow.png';
 import send_icon from './send-icon.png';
 import right_arrow_bold from './right-arrow-bold.png';
 import right_arrow_bold_dark from './right-arrow-bold-dark.png';
+import deep_icon from './deep.png';
 
 // New icons for education
 import school_icon from './school.png';
@@ -126,6 +127,7 @@ export const assets = {
   university_icon,
   result_icon,
   aquinas_icon,
+  deep_icon,
 };
 
 export const workData = [
@@ -227,13 +229,13 @@ export const infoList = [
     title: 'Certifications',
     description: 'Completed multiple professional courses',
     more: {
-      Courses: {
+      AI_Courses: {
         icon: assets.project_icon,
         items: [
           {
-            name: 'JavaScript Algorithms and Data Structures',
-            icon: null,
-            link: 'https://www.freecodecamp.org/certification/fcc12345/javascript-algorithms-and-data-structures',
+            name: 'Supervised Machine Learning: Regression and Classification',
+            icon: assets.deep_icon,
+            link: 'https://www.coursera.org/account/accomplishments/verify/IKJFPFWMWJ59',
           },
           {
             name: 'React - The Complete Guide',
