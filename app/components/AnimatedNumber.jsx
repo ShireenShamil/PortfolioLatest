@@ -2,6 +2,7 @@
 import React from 'react';
 import CountUp from 'react-countup';
 import { useInView } from 'react-intersection-observer';
+import { motion } from 'framer-motion';
 
 const AnimatedNumber = ({ end, label, duration = 2.5, prefix = '', suffix = '' , delay = 0 }) => {
   const { ref, inView } = useInView({
@@ -12,7 +13,7 @@ const AnimatedNumber = ({ end, label, duration = 2.5, prefix = '', suffix = '' ,
   return (
     // Outer container with responsive padding, margin, dark mode, shadow, etc.
     // The `dark:` prefix must be in className, not inline style.
-    <div
+    <motion.div
       ref={ref}
       className="
         p-4 rounded-lg shadow-lg min-w-[200px] flex-1 max-w-[280px] box-border
@@ -22,8 +23,14 @@ const AnimatedNumber = ({ end, label, duration = 2.5, prefix = '', suffix = '' ,
         text-center
         flex flex-col items-center justify-center
       "
+       initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 1 }}
     >
-      <h2
+      <motion.h2
+        initial={{ opacity: 0, y: -20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 0.3 }}
         className="
           text-6xl font-bold mb-2
           text-darkTheme-600 dark:text-white
@@ -47,16 +54,19 @@ const AnimatedNumber = ({ end, label, duration = 2.5, prefix = '', suffix = '' ,
         ) : (
           `${prefix}0${suffix}`
         )}
-      </h2>
-      <p
+      </motion.h2>
+      <motion.p
+        initial={{ opacity: 0, y: -20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.5 }}
         className="
           text-lg text-gray-600 dark:text-gray-300
           transition-colors duration-300
         "
       >
         {label}
-      </p>
-    </div>
+      </motion.p>
+    </motion.div>
   );
 };
 
