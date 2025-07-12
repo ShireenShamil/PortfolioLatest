@@ -171,7 +171,7 @@ export const workData = [
     githubLink: 'https://github.com/ShireenShamil/Portfolio',
   },
   {
-    title: 'Recipe Finder',
+    title: 'PC Builder Platform',
     description: 'Find delicious recipes easily.',
     fullDescription:
       'A web application that allows users to search for recipes using various ingredients and dietary preferences. Integrates with a third-party recipe API to fetch and display detailed cooking instructions and nutritional information.',
