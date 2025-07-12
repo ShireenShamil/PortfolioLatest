@@ -69,6 +69,7 @@ import link_icon_white from './link_icon_white.png';
 import github_icon_white from './github_white.png';
 import github_icon from './github_icon.png';
 import SereniCraft_icon from './SereniCraft.jpg';
+import portfolio from './portfolio.png'
 
 export const assets = {
   user_image,
@@ -79,6 +80,7 @@ export const assets = {
   project_icon,
   project_icon_dark,
   github_icon,
+  portfolio,
 
   frontend_icon,
   backend_icon,
@@ -154,7 +156,7 @@ export const workData = [
     title: 'SereniCraft Website',
     description: 'An intuitive app for daily tasks.',
     fullDescription:
-      'A full-stack task management application enabling users to create, organize, and track their daily tasks. Features include drag-and-drop reordering, due dates, and priority settings. Utilizes React, Redux, and a RESTful API with MongoDB.',
+      'A full-stack Ecommerce website for handicrafts, gifts, accessories, .. etc using HTML CSS PHP technologies.',
     bgImage: '/SereniCraft.jpg',
     liveLink: 'https://first-year-web-technology-project.github.io/SeriniCraft/',
     githubLink: 'https://github.com/First-Year-Web-Technology-Project',
@@ -164,9 +166,9 @@ export const workData = [
     description: 'Showcasing my latest work.',
     fullDescription:
       'This very portfolio website! Designed and developed from scratch using Next.js and Tailwind CSS to showcase my projects, skills, and contact information. Features smooth animations and a responsive design.',
-    bgImage: '/images/project3_bg.jpg',
+    bgImage: '/portfolio.png',
     liveLink: 'https://your-portfolio.vercel.app', // This would be your actual portfolio URL
-    githubLink: 'https://github.com/your-username/your-portfolio-repo',
+    githubLink: 'https://github.com/ShireenShamil/Portfolio',
   },
   {
     title: 'Recipe Finder',
