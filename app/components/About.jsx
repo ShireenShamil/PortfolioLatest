@@ -1,19 +1,89 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react'; // Import useEffect
 import { assets, infoList, toolsData } from '@/assets/assets';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const About = ({ isDarkMode }) => {
-  const [openDialog, setOpenDialog] = useState(false);
-  const [dialogContent, setDialogContent] = useState({ title: '', content: {} });
+  // State to manage which card's details are currently open
+  const [openCardTitle, setOpenCardTitle] = useState(null); // Stores the title of the open card
+  const [openCardIndex, setOpenCardIndex] = useState(null); // Stores the index of the open card for placement
 
-  const handleDialogOpen = (title, content) => {
-    setDialogContent({ title, content });
-    setOpenDialog(true);
+  const handleCardToggle = (title, index) => {
+    // If the clicked card is already open, close it. Otherwise, open the new one.
+    if (openCardTitle === title) {
+      setOpenCardTitle(null);
+      setOpenCardIndex(null);
+    } else {
+      setOpenCardTitle(title);
+      setOpenCardIndex(index);
+    }
   };
 
-  const handleDialogClose = () => setOpenDialog(false);
+  // Helper function to render the detailed content
+  const renderDetailsContent = (item) => (
+    <motion.div
+      initial={{ height: 0, opacity: 0 }}
+      animate={{ height: 'auto', opacity: 1 }}
+      exit={{ height: 0, opacity: 0 }}
+      transition={{ duration: 0.3, ease: 'easeInOut' }}
+      className="details-content text-left mt-4 pt-3 border-t border-gray-200 dark:border-gray-700 w-full box-border overflow-hidden"
+    >
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {Object.entries(item.more).map(([section, { icon, items }]) => (
+          <div
+            key={section}
+            className="bg-white dark:bg-white/10 rounded-lg p-3 shadow-sm border border-gray-100 dark:border-white/5 flex flex-col"
+          >
+            <div className="flex items-center gap-3 mb-2">
+              {icon && <Image src={icon} alt={section} width={24} height={24} />}
+              <h4 className="text-base font-semibold text-gray-700 dark:text-white">{section}</h4>
+            </div>
+            <ul className="flex flex-col gap-1">
+              {items.map(({ name, icon: itemIcon, link }, idx) => (
+                <li key={idx} className="flex items-center gap-2 text-sm text-gray-800 dark:text-gray-200">
+                  {itemIcon && <Image src={itemIcon} alt={name} width={20} height={20} className="flex-shrink-0" />}
+                  {link ? (
+                    <a
+                      href={link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-600 hover:underline dark:text-blue-400 font-medium"
+                    >
+                      {name}
+                    </a>
+                  ) : (
+                    <span className="font-medium">
+                      {name}
+                    </span>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </motion.div>
+  );
+
+  // Determine the number of columns based on screen size (Tailwind's breakpoints)
+  const getCols = () => {
+    if (typeof window !== 'undefined') {
+      if (window.innerWidth >= 1024) return 3; // lg breakpoint
+      if (window.innerWidth >= 640) return 2;  // sm breakpoint
+    }
+    return 1; // default for small screens
+  };
+
+  const [cols, setCols] = useState(getCols());
+
+  // Update cols on window resize for dynamic placement
+  useEffect(() => { // Using useEffect here
+    const handleResize = () => setCols(getCols());
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
 
   return (
     <motion.div
@@ -69,26 +139,59 @@ const About = ({ isDarkMode }) => {
             Hi, I'm Shireen Shamil — a passionate and curious individual who loves learning, creating, and growing. I enjoy working on meaningful projects, solving real-world problems, and constantly improving my skills.
           </p>
 
-          <motion.ul
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 1 }}
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-2xl"
-          >
-            {infoList.map(({ icon, iconDark, title, more }, index) => (
-              <motion.li
-                whileHover={{ scale: 1.05 }}
-                key={index}
-                onClick={() => more && handleDialogOpen(title, more)}
-                className="border-[0.5px] border-gray-400 rounded-xl p-6 sm:p-8 cursor-pointer duration-500 hover:-translate-y-1 hover:[box-shadow:6px_6px_0_#000] hover:[background-color:#fcf4ff] dark:border-white dark:shadow-white dark:hover:bg-darkHover/50"
-              >
-                <Image src={isDarkMode ? iconDark : icon} alt={title} className="w-10 sm:w-12 mt-2" />
-                <h3 className="my-4 sm:my-6 font-semibold text-gray-700 dark:text-white text-lg sm:text-xl">
-                  {title}
-                </h3>
-              </motion.li>
-            ))}
-          </motion.ul>
+          <div className="relative">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-2xl">
+              {infoList.map((item, index) => {
+                const isOpen = openCardTitle === item.title;
+                return (
+                  <React.Fragment key={item.title}>
+                    <motion.li
+                      className={`
+                        border-[0.5px] border-gray-400 rounded-xl p-4 sm:p-4 cursor-pointer duration-500
+                        hover:-translate-y-1 hover:[box-shadow:6px_6px_0_#000] hover:[background-color:#fcf4ff]
+                        dark:border-white dark:shadow-white dark:hover:bg-darkHover/50
+                        ${isOpen ? 'border-blue-500 shadow-lg' : ''}
+                      `}
+                      onClick={() => handleCardToggle(item.title, index)}
+                    >
+                      {/* Main Card Content (always visible) */}
+                      <div className="flex flex-col items-center">
+                        <Image src={isDarkMode ? item.iconDark : item.icon} alt={item.title} className="w-8 sm:w-12 mt-1" />
+                        <h3 className="my-2 sm:my-3 font-semibold text-gray-700 dark:text-white text-lg sm:text-xl">
+                          {item.title}
+                        </h3>
+                        {/* Description removed from here */}
+                        <button className='px-10 py-3 border rounded-full border-gray-500 flex items-center gap-2 dark:bg-white dark:text-black cursor-pointer'>
+                          {isOpen ? 'Hide Details' : 'View Details'}
+                        </button>
+                      </div>
+                    </motion.li>
+
+                    {/* Inject full-width details after the relevant card/row */}
+                    {(isOpen && ((index + 1) % cols === 0 || index === infoList.length - 1)) && (
+                        <div className="col-span-full">
+                          <AnimatePresence mode="wait">
+                            {openCardTitle === item.title && item.more && (
+                              renderDetailsContent(item)
+                            )}
+                          </AnimatePresence>
+                        </div>
+                    )}
+                  </React.Fragment>
+                );
+              })}
+              {/* Fallback for open details if it's not the last card in its row, and not the last card overall */}
+              {openCardIndex !== null && !((openCardIndex + 1) % cols === 0 || openCardIndex === infoList.length - 1) && (
+                <div className="col-span-full">
+                  <AnimatePresence mode="wait">
+                    {openCardTitle === infoList[openCardIndex].title && infoList[openCardIndex].more && (
+                      renderDetailsContent(infoList[openCardIndex])
+                    )}
+                  </AnimatePresence>
+                </div>
+              )}
+            </div>
+          </div>
 
           {/* Tools Section */}
           <motion.h4
@@ -117,74 +220,6 @@ const About = ({ isDarkMode }) => {
           </motion.ul>
         </motion.div>
       </motion.div>
-
-      {/* Dialog */}
-      {openDialog && (
-        <div
-          className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center px-2 sm:px-6 overflow-y-auto"
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="dialog-title"
-        >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            className="bg-white dark:bg-darkTheme rounded-2xl shadow-2xl max-w-[95vw] sm:max-w-5xl w-full p-6 sm:p-10 relative max-h-[90vh] overflow-auto"
-          >
-            <button
-              onClick={handleDialogClose}
-              className="absolute top-3 right-5 text-gray-600 dark:text-white text-3xl sm:text-4xl font-bold"
-              aria-label="Close dialog"
-            >
-              ×
-            </button>
-            <h3
-              id="dialog-title"
-              className="text-2xl sm:text-4xl font-bold mb-6 text-gray-800 dark:text-white"
-            >
-              {dialogContent.title}
-            </h3>
-
-            {/* 3 boxes grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
-              {Object.entries(dialogContent.content).map(([section, { icon, items }]) => (
-                <div
-                  key={section}
-                  className="bg-white dark:bg-white/10 rounded-xl p-6 shadow-md border border-white/20 flex flex-col"
-                >
-                  <div className="flex items-center gap-3 mb-4">
-                    {icon && <Image src={icon} alt={section} width={30} height={30} />}
-                    <h4 className="text-lg font-semibold text-gray-700 dark:text-white">{section}</h4>
-                  </div>
-                 <ul className="flex flex-col gap-3">
-  {items.map(({ name, icon, link }, idx) => (
-    <li key={idx} className="flex items-center gap-3">
-      {icon && <Image src={icon} alt={name} width={24} height={24} />}
-      {link ? (
-        <a
-          href={link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-blue-600 hover:underline dark:text-blue-400 font-medium text-sm sm:text-base"
-        >
-          {name}
-        </a>
-      ) : (
-        <span className="text-gray-800 dark:text-white text-sm sm:text-base font-medium">
-          {name}
-        </span>
-      )}
-    </li>
-  ))}
-</ul>
-
-                </div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      )}
     </motion.div>
   );
 };

@@ -181,14 +181,7 @@ export const infoList = [
           { name: 'MongoDB', icon: assets.mongodb },
         ],
       },
-      Tools: {
-        icon: assets.tools_icon,
-        items: [
-          { name: 'Git', icon: assets.git },
-          { name: 'Figma', icon: assets.figma },
-          { name: 'VS Code', icon: assets.vscode },
-        ],
-      },
+     
     },
   },
   {
