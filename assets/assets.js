@@ -64,6 +64,11 @@ import school_icon_dark from './school.png';
 import university_icon from './university.png';
 import result_icon from './result.png';
 import aquinas_icon from './aquinas.png';
+import pua_icon from './PUA.jpg';
+import link_icon_white from './link_icon_white.png';
+import github_icon_white from './github_white.png';
+import github_icon from './github_icon.png';
+import SereniCraft_icon from './SereniCraft.jpg';
 
 export const assets = {
   user_image,
@@ -73,6 +78,7 @@ export const assets = {
   edu_icon_dark,
   project_icon,
   project_icon_dark,
+  github_icon,
 
   frontend_icon,
   backend_icon,
@@ -128,13 +134,50 @@ export const assets = {
   result_icon,
   aquinas_icon,
   deep_icon,
+  pua_icon,
+  link_icon_white,
+  github_icon_white,
+  SereniCraft_icon,
 };
 
 export const workData = [
-  { title: 'Frontend project', description: 'Web Design', bgImage: '/work-1.png' },
-  { title: 'Geo based app', description: 'Mobile App', bgImage: '/work-2.png' },
-  { title: 'Photography site', description: 'Web Design', bgImage: '/work-3.png' },
-  { title: 'UI/UX designing', description: 'UI/UX Design', bgImage: '/work-4.png' },
+  {
+    title: 'PUA Website',
+    description: 'A responsive site for organization',
+    fullDescription:
+      'Using a blend of HTML, CSS, PHP, Javascript and Bootstrap I created a responsive platform design to bring Panadura Undergraduate community together offering event updates, resources and more.',
+    bgImage: '/PUA.jpg', // Replace with your actual image path
+    liveLink: 'https://shireenshamil.github.io/PANADURA/', // Replace with your live demo URL
+    githubLink: 'https://github.com/ShireenShamil/PANADURA', // Replace with your GitHub URL
+  },
+  {
+    title: 'SereniCraft Website',
+    description: 'An intuitive app for daily tasks.',
+    fullDescription:
+      'A full-stack task management application enabling users to create, organize, and track their daily tasks. Features include drag-and-drop reordering, due dates, and priority settings. Utilizes React, Redux, and a RESTful API with MongoDB.',
+    bgImage: '/SereniCraft.jpg',
+    liveLink: 'https://first-year-web-technology-project.github.io/SeriniCraft/',
+    githubLink: 'https://github.com/First-Year-Web-Technology-Project',
+  },
+  {
+    title: 'Personal Portfolio',
+    description: 'Showcasing my latest work.',
+    fullDescription:
+      'This very portfolio website! Designed and developed from scratch using Next.js and Tailwind CSS to showcase my projects, skills, and contact information. Features smooth animations and a responsive design.',
+    bgImage: '/images/project3_bg.jpg',
+    liveLink: 'https://your-portfolio.vercel.app', // This would be your actual portfolio URL
+    githubLink: 'https://github.com/your-username/your-portfolio-repo',
+  },
+  {
+    title: 'Recipe Finder',
+    description: 'Find delicious recipes easily.',
+    fullDescription:
+      'A web application that allows users to search for recipes using various ingredients and dietary preferences. Integrates with a third-party recipe API to fetch and display detailed cooking instructions and nutritional information.',
+    bgImage: '/images/project4_bg.jpg',
+    liveLink: 'https://recipe-finder.vercel.app',
+    githubLink: 'https://github.com/your-username/recipe-finder-repo',
+  },
+  // Add more projects as needed
 ];
 
 export const serviceData = [
