@@ -10,6 +10,7 @@ import Services from "./components/Services";
 import Work from "./components/Work";
 // Import the new AnimatedNumber component
 import AnimatedNumber from "./components/AnimatedNumber"; // Adjust the path if your components folder is structured differently
+import Blog from "./components/Blog";
 
 
 export default function Home() {
@@ -54,6 +55,7 @@ export default function Home() {
       <About isDarkMode={isDarkMode} />
       <Services isDarkMode={isDarkMode} />
       <Work isDarkMode={isDarkMode} />
+      <Blog isDarkMode={isDarkMode} />
       <Contact isDarkMode={isDarkMode} />
       <Footer isDarkMode={isDarkMode} />
     </>

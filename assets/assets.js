@@ -207,6 +207,34 @@ export const serviceData = [
   { icon: assets.graphics_icon, title: 'Graphics design', description: 'Creative design solutions to enhance visual...', link: '' },
 ];
 
+
+export const blogPosts = [
+  {
+    id: 1,
+    title: "How JWT Authentication happens?? __Behind the JWT",
+    date: "2025-05-07",
+    image: "/blog1.webp", // path to your image in public folder or URL
+    mediumLink: "https://medium.com/@shireenshamil11/jwt-json-web-token-authentication-8b14b2521b4b",
+    
+  },
+  {
+    id: 2,
+    title: "The Ethical Implications of Artificial Intelligence",
+    date: "2025-07-10",
+    image: "/blog2.webp",
+    mediumLink: "https://medium.com/@shireenshamil11/the-ethical-implications-of-artificial-intelligence-5d40186e261a",
+  } ,
+  {
+    id: 3,
+    title: "Why Does AI Text Still Feel… Not Quite Right? (Even When It’s Supposed to Be Like Us!)",
+    date: "2025-07-12",
+    image: "/blog3.webp",
+    mediumLink: "https://medium.com/@shireenshamil11/why-does-ai-text-still-feel-not-quite-right-even-when-its-supposed-to-be-like-us-90a5a44b5e6b",
+  } 
+  // Add more posts here
+];
+
+
 export const infoList = [
   {
     icon: assets.code_icon,
