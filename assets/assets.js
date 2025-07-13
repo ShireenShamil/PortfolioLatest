@@ -172,12 +172,21 @@ export const workData = [
   },
   {
     title: 'PC Builder Platform',
-    description: 'Find delicious recipes easily.',
+    description: 'Find best PC designs easily',
     fullDescription:
-      'A web application that allows users to search for recipes using various ingredients and dietary preferences. Integrates with a third-party recipe API to fetch and display detailed cooking instructions and nutritional information.',
-    bgImage: '/images/project4_bg.jpg',
+      'A web application that allows users to search for PC components using various types and preferences. Integrates with a third-party API to fetch and display using MERN technology',
+    bgImage: '/buildify.png',
     liveLink: 'https://recipe-finder.vercel.app',
-    githubLink: 'https://github.com/your-username/recipe-finder-repo',
+    githubLink: 'https://github.com/Second-year-SW-Project',
+  },
+  {
+    title: 'SafeShut - Hardware project',
+    description: 'Automatic Shutoff Ironboard',
+    fullDescription:
+      'The Automatic Shutoff Iron Board is a smart safety solution designed to prevent accidents caused by unattended electric irons. This system automatically powers off the iron when it detects that it has been left idle for a certain period, reducing fire hazards and saving electricity. It uses a combination of sensors and microcontroller-based logic to monitor user activity and the presence of the iron on the board.',
+    bgImage: '/hardware.png',
+    liveLink: 'https://www.linkedin.com/posts/shireen-shamil-3aa53326a_uom-iot-hardwaredesign-activity-7238439371421405185-5u6_?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEHuJXIBCUYeYT4QIsIrgJaIttmj8_0BXRA',
+    githubLink: 'https://github.com/ShireenShamil/Automatic-Shutoff-ironboard-code',
   },
   // Add more projects as needed
 ];
