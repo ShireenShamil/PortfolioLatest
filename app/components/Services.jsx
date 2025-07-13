@@ -26,7 +26,9 @@ const Services = ({isDarkMode}) => {
        initial={{opacity:0}}
     whileInView={{opacity:1}}
     transition={{duration:0.5 , delay:0.7}}
-       className='text-center max-w-2xl mx-auto mt-5 mb-12 font-Ovo'>I offer full-stack web development services including responsive frontend design using React and Tailwind CSS, seamless UI/UX design with tools like Figma, and robust backend development using Node.js and Express. From crafting intuitive user experiences to building scalable APIs, I ensure clean, efficient, and performance-driven solutions. My goal is to deliver modern, user-focused web applications that meet both aesthetic and functional needs.</motion.p>
+       className='text-center max-w-2xl mx-auto mt-5 mb-12 font-Ovo'>I have actively participated in various university-level and national competitions that tested both my technical and creative abilities. These include hackathons, UI/UX design contests, and coding challenges where I sharpened my problem-solving skills under pressure. Engaging in these events has enhanced my teamwork, innovation, and adaptability. Each competition has been a stepping stone in building my confidence and practical experience.
+
+</motion.p>
       
       <motion.div
        initial={{opacity:0}}

@@ -6,11 +6,12 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Navbar from "./components/Navbar";
-import Services from "./components/Services";
+//import Services from "./components/Services";
 import Work from "./components/Work";
 // Import the new AnimatedNumber component
 import AnimatedNumber from "./components/AnimatedNumber"; // Adjust the path if your components folder is structured differently
 import Blog from "./components/Blog";
+import Achievements from "./components/Achievements";
 
 
 export default function Home() {
@@ -53,7 +54,8 @@ export default function Home() {
       </section>
       {/* End Portfolio Stats Section */}
       <About isDarkMode={isDarkMode} />
-      <Services isDarkMode={isDarkMode} />
+      {/* <Services isDarkMode={isDarkMode} /> */}
+      <Achievements isDarkMode={isDarkMode} />
       <Work isDarkMode={isDarkMode} />
       <Blog isDarkMode={isDarkMode} />
       <Contact isDarkMode={isDarkMode} />

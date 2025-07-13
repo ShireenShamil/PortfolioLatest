@@ -200,12 +200,47 @@ export const workData = [
   // Add more projects as needed
 ];
 
-export const serviceData = [
-  { icon: assets.web_icon, title: 'Web design', description: 'Web development is the process of building...', link: '' },
-  { icon: assets.mobile_icon, title: 'Mobile app', description: 'Mobile app development involves creating software...', link: '' },
-  { icon: assets.ui_icon, title: 'UI/UX design', description: 'UI/UX design focuses on creating a seamless...', link: '' },
-  { icon: assets.graphics_icon, title: 'Graphics design', description: 'Creative design solutions to enhance visual...', link: '' },
+// src/assets/assets.js
+
+export const achievements = [
+  {
+    title: "IYMC - 2024",
+    description: "Proud to share my Participation Certificate for the International Youth Math Challenge (IYMC) 2024 with 90% completion! I successfully participated in the Qualification Round of this extracurricular mathematics competition for high school and university students. #InternationalYouthMathChallenge #MathCompetition #STEMeducation #LifelongLearning",
+    image: "/iymc.jpg",
+    certificateLink: "https://example.com/certificates/iymc2024.pdf",
+  },
+  {
+    title: "MoraXtreme 9.0",
+    description: "Honored to have participated in MoraXtreme 9.0 as part of the Shark Hackers team, organized by the IEEE Student Branch of the University of Moratuwa.It was a great experience tackling algorithmic challenges and enhancing my problem-solving skills.",
+    image: "/morax.jpg",
+    certificateLink: "https://example.com/certificates/morax9.pdf",
+  },
+  {
+    title: "ModelIX 3D Modeling",
+    description: "I had the pleasure of participating in the ModelX 3D Modeling Competition at FestX 5.0, organized by the IEEE WIE Affinity Group of the University of Moratuwa in July 2024. It was a valuable experience that enhanced my skills in 3D modeling and teamwork. Grateful to have worked alongside talented individuals and look forward to more opportunities for growth and innovation in the future.",
+    image: "/modelx.jpg",
+    certificateLink: "https://example.com/certificates/modelxfestx5.pdf",
+  },
+  {
+    title: "Hackmoral 7.0",
+    description: "Secured the Winner's title at Hackmoral 7.0, a competitive inter-university hackathon.Collaborated in a dynamic team to solve real-world problems through innovative tech solutions.Demonstrated strong skills in development, critical thinking, and time management under pressure.This achievement reflects my commitment to creativity, teamwork, and technical excellence.",
+    image: "/hackmoral.jpg",
+    certificateLink: "https://example.com/certificates/hackmoral7winner.pdf",
+  },
+  {
+    title: "CodeSprintX",
+    description: "Progressed to the Technical Pitch round in CodeSprintX with our innovative project BloodLink.The solution focused on real-time blood donor tracking and emergency response optimization.Showcased strong technical architecture, UI design, and social impact potential during evaluations.This milestone highlights our ability to build scalable, purpose-driven solutions under pressure.",
+    image: "/code.jpg",
+    certificateLink: "https://example.com/certificates/codesprintx_technicalpitch.pdf",
+  },
+  {
+    title: "Idealize",
+    description: "Advanced to the prototype development phase in the Idealize competition with our creative project concept.Focused on transforming innovative ideas into functional models to demonstrate core features.Collaborated effectively to iterate designs and incorporate user feedback for improvement.This experience strengthened our skills in rapid prototyping and practical solution development.",
+    image: "/idealize.jpg",
+    certificateLink: "https://example.com/certificates/idealize_prototypephase.pdf",
+  },
 ];
+
 
 
 export const blogPosts = [
