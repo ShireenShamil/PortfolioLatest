@@ -11,7 +11,7 @@ const Achievements = () => {
   const repeatedItems = [...achievements, ...achievements];
 
   return (
-    <div className="py-12 dark:bg-darkTheme">
+    <div id='achievements' className="py-12 dark:bg-darkTheme">
       <h2 className="text-4xl font-bold dark:text-white text-blue-900 mb-10 font-Ovo text-center">
         My Achievements
       </h2>
