@@ -11,18 +11,18 @@ const Achievements = () => {
   const repeatedItems = [...achievements, ...achievements];
 
   return (
-    <div className="py-12 bg-gray-50 dark:bg-darkTheme">
-      <h2 className="text-4xl font-bold text-yellow-100 mb-10 font-Ovo text-center">
+    <div className="py-12 dark:bg-darkTheme">
+      <h2 className="text-4xl font-bold dark:text-white text-blue-900 mb-10 font-Ovo text-center">
         My Achievements
       </h2>
 
-      <div className="max-w-screen-xl mx-auto px-6">
+      <div className="max-w-screen-xl mx-auto px-6 py-6">
         <div
           className="relative mx-auto overflow-hidden"
           style={{ width: 1200 }} // Enough for 3 small cards + gaps
         >
           <motion.div
-            className="flex gap-8 whitespace-nowrap"
+            className="flex gap-8 whitespace-nowrap py-5"
             animate={{ x: ['0%', '-50%'] }}
             transition={{
               x: {
@@ -36,11 +36,11 @@ const Achievements = () => {
             {repeatedItems.map((item, index) => (
            <motion.div
   key={index}
-  className="inline-block bg-white dark:bg-darkTheme border border-white rounded-2xl shadow-md p-4 min-w-[17rem] max-w-[17rem] h-[22rem] cursor-pointer flex flex-col justify-between items-center transition-transform duration-300 hover:scale-105 hover:shadow-xl"
+  className="inline-block bg-gray-200  dark:bg-darkTheme dark:border-white dark:border-2 border-2 border-darkTheme rounded-2xl shadow-md p-4 min-w-[17rem] max-w-[17rem] h-[22rem] cursor-pointer flex flex-col justify-between items-center transition-transform duration-300 hover:scale-105 hover:shadow-xl"
   whileHover={{ y: -4 }}
   title={item.title}
 >
-  <div className="relative w-20 h-20 rounded-full overflow-hidden border-4 border-purple-600 mb-3">
+  <div className="relative w-20 h-20 rounded-full overflow-hidden border-4 border-blue-900 mb-3">
     <Image
       src={item.image}
       alt={item.title}
@@ -50,7 +50,7 @@ const Achievements = () => {
     />
   </div>
 
-  <h3 className="text-purple-700 dark:text-yellow-300 font-semibold text-center text-sm mb-2">
+  <h3 className="text-blue-900 dark:text-yellow-300 font-semibold text-center text-sm mb-2">
     {item.title}
   </h3>
 
