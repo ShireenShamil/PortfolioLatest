@@ -180,13 +180,22 @@ export const workData = [
     githubLink: 'https://github.com/Second-year-SW-Project',
   },
   {
-    title: 'SafeShut - Hardware project',
+    title: 'SafeShut - HW project',
     description: 'Automatic Shutoff Ironboard',
     fullDescription:
       'The Automatic Shutoff Iron Board is a smart safety solution designed to prevent accidents caused by unattended electric irons. This system automatically powers off the iron when it detects that it has been left idle for a certain period, reducing fire hazards and saving electricity. It uses a combination of sensors and microcontroller-based logic to monitor user activity and the presence of the iron on the board.',
     bgImage: '/hardware.png',
     liveLink: 'https://www.linkedin.com/posts/shireen-shamil-3aa53326a_uom-iot-hardwaredesign-activity-7238439371421405185-5u6_?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEHuJXIBCUYeYT4QIsIrgJaIttmj8_0BXRA',
     githubLink: 'https://github.com/ShireenShamil/Automatic-Shutoff-ironboard-code',
+  },
+  {
+    title: 'BloodLink',
+    description: 'Find Blood easily in emergency situations',
+    fullDescription:
+      'BloodLink is an innovative real-time blood donation platform that connects donors, patients, and hospitals efficiently. With features like emergency alerts, live donor tracking, and disaster-mode coordination, BloodLink ensures life-saving blood reaches those in need — faster and smarter.',
+    bgImage: '/bloodlink.png',
+    liveLink: 'https://recipe-finder.vercel.app',
+    githubLink: 'https://github.com/TeamSaga',
   },
   // Add more projects as needed
 ];
