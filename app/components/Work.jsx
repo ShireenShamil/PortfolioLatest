@@ -14,21 +14,30 @@ const Work = ({ isDarkMode }) => {
   const handleProjectClick = (project) => setSelectedProject(project);
   const handleCloseDialog = () => setSelectedProject(null);
 
+  const totalProjects = workData.length;
+
   const nextItem = () => {
-    if (startIndex + ITEMS_SHOWN < workData.length) {
-      setDirection(1);
-      setStartIndex((prev) => prev + 1);
-    }
+    setDirection(1);
+    // Circular increment: wrap back to 0 if exceeds length
+    setStartIndex((prev) => (prev + 1) % totalProjects);
   };
 
   const prevItem = () => {
-    if (startIndex > 0) {
-      setDirection(-1);
-      setStartIndex((prev) => prev - 1);
-    }
+    setDirection(-1);
+    // Circular decrement: if prev is 0, wrap to last possible start index
+    setStartIndex((prev) => (prev - 1 + totalProjects) % totalProjects);
   };
 
-  const displayedProjects = workData.slice(startIndex, startIndex + ITEMS_SHOWN);
+  // To handle the slicing properly with circular logic:
+  // When the slice exceeds the array end, concatenate from start
+  let displayedProjects = [];
+  if (startIndex + ITEMS_SHOWN <= totalProjects) {
+    displayedProjects = workData.slice(startIndex, startIndex + ITEMS_SHOWN);
+  } else {
+    const firstPart = workData.slice(startIndex, totalProjects);
+    const secondPart = workData.slice(0, ITEMS_SHOWN - firstPart.length);
+    displayedProjects = firstPart.concat(secondPart);
+  }
 
   return (
     <motion.div
@@ -58,31 +67,27 @@ const Work = ({ isDarkMode }) => {
         >
           <AnimatePresence mode='wait'>
             {displayedProjects.map((project, index) => (
-            <motion.div
-  key={project.title}
-  className={`relative cursor-pointer group border-2 rounded-xl overflow-hidden
-    border-gray-300 dark:border-white/60`}
-  onClick={() => handleProjectClick(project)}
-  layout
-  whileHover={{ scale: 1.05 }}
-  transition={{ duration: 0.3 }}
->
-  <div
-    className="w-full h-full aspect-square bg-no-repeat bg-cover bg-center"
-    style={{ backgroundImage: `url(${project.bgImage})` }}
-  >
-    {/* Content */}
-    <div className='bg-white w-10/12 rounded-md absolute bottom-5 left-1/2 -translate-x-1/2 py-3 px-5 flex items-center justify-between duration-500 group-hover:bottom-7'>
-      <div>
-        <h2 className='font-semibold'>{project.title}</h2>
-      </div>
-      {/* <div className='border rounded-full border-black w-9 aspect-square flex items-center justify-center shadow-[2px_2px_0_#000] group-hover:bg-lime-300 transition'>
-        <Image src={assets.send_icon} alt='sendicon' className='w-5' />
-      </div> */}
-    </div>
-  </div>
-</motion.div>
-
+              <motion.div
+                key={project.title}
+                className={`relative cursor-pointer group border-2 rounded-xl overflow-hidden
+                  border-blue-450 dark:border-white/60`}
+                onClick={() => handleProjectClick(project)}
+                layout
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div
+                  className="w-full h-full aspect-square bg-no-repeat bg-cover bg-center"
+                  style={{ backgroundImage: `url(${project.bgImage})` }}
+                >
+                  {/* Content */}
+                  <div className='bg-white w-10/12 rounded-md absolute bottom-5 left-1/2 -translate-x-1/2 py-3 px-5 flex items-center justify-between duration-500 group-hover:bottom-7'>
+                    <div>
+                      <h2 className='font-semibold'>{project.title}</h2>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
             ))}
           </AnimatePresence>
         </motion.div>
@@ -90,26 +95,22 @@ const Work = ({ isDarkMode }) => {
 
       {/* Slide Controls */}
       <div className='flex justify-center gap-4 my-8'>
-        <button
-          onClick={prevItem}
-          disabled={startIndex === 0}
-          className={`px-6 py-2 rounded-full border transition ${
-            startIndex === 0 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-200 dark:hover:bg-darkHover'
-          }`}
-        >
-          Previous
-        </button>
-        <button
-          onClick={nextItem}
-          disabled={startIndex + ITEMS_SHOWN >= workData.length}
-          className={`px-6 py-2 rounded-full border transition ${
-            startIndex + ITEMS_SHOWN >= workData.length
-              ? 'opacity-50 cursor-not-allowed'
-              : 'hover:bg-gray-200 dark:hover:bg-darkHover'
-          }`}
-        >
-          Next
-        </button>
+      {/* Slide Controls */}
+<div className='flex justify-center gap-4 my-8'>
+  <button
+    onClick={prevItem}
+    className='w-24 h-12 rounded-full border hover:bg-gray-200 dark:hover:bg-darkHover flex items-center justify-center'
+  >
+    Previous
+  </button>
+  <button
+    onClick={nextItem}
+    className='w-24 h-12 rounded-full border hover:bg-gray-200 dark:hover:bg-darkHover flex items-center justify-center'
+  >
+    Next
+  </button>
+</div>
+
       </div>
 
       {/* Dialog */}
