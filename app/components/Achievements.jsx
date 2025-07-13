@@ -15,6 +15,12 @@ const Achievements = () => {
       <h2 className="text-4xl font-bold dark:text-white text-blue-900 mb-10 font-Ovo text-center">
         My Achievements
       </h2>
+      <motion.p initial={{opacity:0}}
+    whileInView={{opacity:1}}
+    transition={{duration:0.5 , delay:0.7}}
+       className='text-center max-w-2xl mx-auto mt-5 mb-12 font-Ovo'>I have actively participated in university-level and national competitions that challenged both my technical and creative skills. These include hackathons, UI/UX design contests, and coding challenges that strengthened my problem-solving under pressure. These experiences improved my teamwork, innovation, and adaptability, building both confidence and practical expertise.
+
+</motion.p>
 
       <div className="max-w-screen-xl mx-auto px-6 py-6">
         <div
