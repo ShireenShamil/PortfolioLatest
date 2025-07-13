@@ -42,7 +42,7 @@ const Achievements = () => {
             {repeatedItems.map((item, index) => (
            <motion.div
   key={index}
-  className="inline-block bg-gray-200  dark:bg-darkTheme dark:border-white dark:border-2 border-2 border-darkTheme rounded-2xl shadow-md p-4 min-w-[17rem] max-w-[17rem] h-[22rem] cursor-pointer flex flex-col justify-between items-center transition-transform duration-300 hover:scale-105 hover:shadow-xl"
+  className="inline-block dark:hover:bg-darkHover hover:bg-gray-300 bg-gray-200  dark:bg-darkTheme dark:border-white dark:border-2 border-2 border-darkTheme rounded-2xl shadow-md p-4 min-w-[17rem] max-w-[17rem] h-[22rem] cursor-pointer flex flex-col justify-between items-center transition-transform duration-300 hover:scale-105 hover:shadow-xl"
   whileHover={{ y: -4 }}
   title={item.title}
 >
