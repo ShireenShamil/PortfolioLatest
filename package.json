@@ -4,11 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-  "build": "next build && next export",
-  "deploy": "gh-pages -d out"
+    "build": "next build && next export"
   },
   "dependencies": {
-    "gh-pages": "^6.3.0",
     "motion": "^12.23.1",
     "next": "15.3.5",
     "react": "^19.0.0",
