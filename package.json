@@ -2,13 +2,14 @@
   "name": "portfolio",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://ShireenShamil.github.io/Portfolio",
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "next dev",
+  "build": "next build && next export",
+  "deploy": "gh-pages -d out"
   },
   "dependencies": {
+    "gh-pages": "^6.3.0",
     "motion": "^12.23.1",
     "next": "15.3.5",
     "react": "^19.0.0",
