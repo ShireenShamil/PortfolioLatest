@@ -176,6 +176,7 @@ const About = ({ isDarkMode }) => {
                     </AnimatePresence>
                   </div>
                 )}
+                
             </div>
           </div>
 
