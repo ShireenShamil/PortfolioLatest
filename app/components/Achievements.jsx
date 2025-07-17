@@ -42,6 +42,7 @@ const Achievements = () => {
             <h3 className="text-blue-900 dark:text-yellow-300 font-semibold text-center text-sm mb-2">
               {item.title}
             </h3>
+            
 
             <p className="text-gray-700 dark:text-gray-200 text-xs text-center mb-3 break-words">
               {item.description}
