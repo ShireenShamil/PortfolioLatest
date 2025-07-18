@@ -335,9 +335,9 @@ export const infoList = [
         icon: assets.university_icon,
         items: [
           { name: 'University of Moratuwa', icon: assets.university_icon },
-          { name: 'L1S1 – GPA 3.22', icon: assets.result_icon },
+          { name: 'L1S1 – GPA 3.32', icon: assets.result_icon },
           { name: 'L1S2 – GPA 3.82 (Dean List)', icon: assets.result_icon },
-          { name: 'L2S1 – GPA 3.84 (Dean List)', icon: assets.result_icon },
+          { name: 'L2S1 – GPA 3.79', icon: assets.result_icon },
         ],
       },
     },
