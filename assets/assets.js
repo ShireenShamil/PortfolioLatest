@@ -357,9 +357,9 @@ export const infoList = [
             link: 'https://www.coursera.org/account/accomplishments/verify/IKJFPFWMWJ59',
           },
           {
-            name: 'React - The Complete Guide',
-            icon: null,
-            link: 'https://www.udemy.com/certificate/UC-abcdef1234/',
+            name: 'Neural networks and Deep Learning',
+            icon: assets.deep_icon,
+            link: 'https://www.coursera.org/account/accomplishments/verify/IJ001AKGC2RT',
           },
           {
             name: 'MongoDB Basics',
