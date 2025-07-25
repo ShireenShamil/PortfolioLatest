@@ -11,6 +11,7 @@ import frontend_icon from './frontend_icon.png';
 import backend_icon from './backend_icon.png';
 import database_icon from './database_icon.png';
 import tools_icon from './tools_icon.png';
+import bgHeader from './bg-header.png'
 
 // Tech-specific icons
 import html_icon from './html-icon.png';
@@ -96,6 +97,7 @@ export const assets = {
   bootstrap_icon,
   node_icon,
   express_icon,
+  bgHeader,
 
   mongodb,
   git,
