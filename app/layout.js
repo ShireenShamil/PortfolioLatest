@@ -32,7 +32,7 @@ export default function RootLayout({ children }) {
             src={assets.bgHeader} // your background image from assets
             alt="Background"
             fill
-            className="object-cover blur-md opacity-90"
+            className="object-cover blur-md opacity-95"
             priority
           />
         </div>
