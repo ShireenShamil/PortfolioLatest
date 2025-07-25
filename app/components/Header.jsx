@@ -5,8 +5,9 @@ import { motion } from 'framer-motion';
 
 const Header = ({ isDarkMode }) => {
   return (
-    // Outer container: Added mt-16 for gap between nav and header content
-    <div className='w-full min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 text-gray-900 dark:text-gray-100 transition-colors duration-300 mt-16'> {/* ADDED mt-16 HERE */}
+    // Outer container: Removed mt-16 and added pt-16 for gap from navbar.
+    // The py-12 remains for overall vertical padding, pt-16 adds specifically to the top.
+    <div className='w-full min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 text-gray-900 dark:text-gray-100 transition-colors duration-300 pt-16'> {/* CHANGED HERE: Removed mt-16, Added pt-16 */}
 
       {/* Inner content container */}
       <div className='w-full max-w-7xl mx-auto flex flex-col lg:mt-7 lg:flex-row items-center gap-6 lg:gap-8'>
@@ -33,6 +34,7 @@ const Header = ({ isDarkMode }) => {
         {/* --- Text Details Section (Second in JSX) --- */}
         <div className="flex flex-col items-center lg:items-start text-center lg:text-left gap-4
                      lg:w-1/2 lg:pl-4 lg:pr-10 lg:mt-2">
+          {/* Note: Removed the inline comment from className to fix the previous error */}
           <motion.h3
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -60,16 +62,20 @@ const Header = ({ isDarkMode }) => {
             I'm an Undergraduate at University Of Moratuwa studying Bsc(Hons)in IT, passionate about building impactful software solutions.
           </motion.p>
 
-          {/* Buttons: Restored original styles */}
-          <div className='flex flex-col sm:flex-row items-center gap-4 mt-4'> 
+          {/* Buttons: Original styles restored */}
+          <div className='flex flex-col sm:flex-row items-center gap-4 mt-4'>
             <motion.a
               initial={{ y: 30, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.6, delay: 1 }}
               href='#contact'
-              className='px-10 py-3 border border-white rounded-full bg-black text-white flex items-center gap-2 dark:bg-transparent' 
+              className={`px-10 py-3 rounded-full flex items-center justify-center gap-3 text-lg font-semibold whitespace-nowrap
+                         ${isDarkMode
+                           ? 'bg-gradient-to-r from-purple-700 to-indigo-800 text-white shadow-lg hover:from-purple-800 hover:to-indigo-900' // Dark mode gradient
+                           : 'bg-black text-white hover:bg-gray-800 border-2 border-black'}
+                         transition-all duration-300 ease-in-out w-full sm:w-auto`}
             >
-              Contact Me <Image src={assets.right_arrow_white} alt='' className='w-4' />
+              Contact Me <Image src={isDarkMode ? assets.right_arrow_white : assets.right_arrow_white} alt='Arrow icon' className='w-4' />
             </motion.a>
 
             <motion.a
@@ -78,9 +84,13 @@ const Header = ({ isDarkMode }) => {
               transition={{ duration: 0.6, delay: 1.2 }}
               href='/Shireen.pdf'
               download
-              className='px-10 py-3 border rounded-full border-gray-500 flex items-center gap-2 dark:bg-white dark:text-black' 
+              className={`px-10 py-3 rounded-full flex items-center justify-center gap-3 text-lg font-semibold whitespace-nowrap
+                         ${isDarkMode
+                           ? 'border-2 border-gray-600 text-gray-300 hover:border-gray-400 hover:text-white' // Dark mode subtle border
+                           : 'border-2 border-gray-400 text-gray-700 hover:border-gray-600 hover:text-gray-900'}
+                         transition-all duration-300 ease-in-out w-full sm:w-auto`}
             >
-              My Resume <Image src={assets.download_icon} alt='' className='w-4' />
+              My Resume <Image src={isDarkMode ? assets.download_icon_dark : assets.download_icon} alt='Download icon' className='w-4' />
             </motion.a>
           </div>
         </div>
