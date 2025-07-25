@@ -149,7 +149,9 @@ const Header = ({ isDarkMode }) => {
           <Image
             src={assets.profile_img}
             alt='Profile Image'
-            className='lg:mr-15 rounded-full w-48 mt-10 lg:mt-3 sm:w-56 md:w-64 lg:w-90 border-4 border-white shadow-[0_0_15px_4px_rgba(255,182,193,0.7)]'
+            className='lg:mr-15 rounded-full w-44 mt-5 lg:mt-3 sm:w-56 md:w-64 lg:w-90 border-2 sm:border-4 
+  border-white 
+  shadow-[0_0_8px_2px_rgba(255,182,193,0.7)] sm:shadow-[0_0_15px_4px_rgba(255,182,193,0.7)]'
           />
         </motion.div>
       </div>
