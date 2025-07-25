@@ -37,7 +37,7 @@ const Header = ({ isDarkMode }) => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className='text-3xl sm:text-4xl lg:text-[50px] font-bold font-Outfit leading-tight text-gray-900 dark:text-white' {/* Restored original h3 size */}
+            className='text-3xl sm:text-4xl lg:text-[50px] font-bold font-Outfit leading-tight text-gray-900 dark:text-white'
           >
             Hai! , I'm Shireen Shamil <Image src={assets.hand_icon} alt='Waving hand' className='w-7 animate-wave' />
           </motion.h3>
@@ -61,13 +61,13 @@ const Header = ({ isDarkMode }) => {
           </motion.p>
 
           {/* Buttons: Restored original styles */}
-          <div className='flex flex-col sm:flex-row items-center gap-4 mt-4'> {/* RESTORED gap-4 and mt-4 */}
+          <div className='flex flex-col sm:flex-row items-center gap-4 mt-4'> 
             <motion.a
               initial={{ y: 30, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.6, delay: 1 }}
               href='#contact'
-              className='px-10 py-3 border border-white rounded-full bg-black text-white flex items-center gap-2 dark:bg-transparent' {/* RESTORED ORIGINAL CLASSES */}
+              className='px-10 py-3 border border-white rounded-full bg-black text-white flex items-center gap-2 dark:bg-transparent' 
             >
               Contact Me <Image src={assets.right_arrow_white} alt='' className='w-4' />
             </motion.a>
@@ -78,7 +78,7 @@ const Header = ({ isDarkMode }) => {
               transition={{ duration: 0.6, delay: 1.2 }}
               href='/Shireen.pdf'
               download
-              className='px-10 py-3 border rounded-full border-gray-500 flex items-center gap-2 dark:bg-white dark:text-black' {/* RESTORED ORIGINAL CLASSES */}
+              className='px-10 py-3 border rounded-full border-gray-500 flex items-center gap-2 dark:bg-white dark:text-black' 
             >
               My Resume <Image src={assets.download_icon} alt='' className='w-4' />
             </motion.a>
