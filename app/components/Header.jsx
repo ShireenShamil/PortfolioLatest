@@ -28,7 +28,7 @@ const Header = ({ isDarkMode }) => {
             alt='Shireen Shamil Profile'
             width={400}
             height={400}
-            className='rounded-full w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 object-cover
+            className='rounded-full w-64 h-64 sm:w-80 sm:mt-5 sm:h-80 lg:w-96 lg:h-96 object-cover
                        border-4 border-white dark:border-gray-700
                        shadow-xl dark:shadow-2xl transition-all duration-300 ease-in-out
                        hover:scale-105 transform'
@@ -52,14 +52,14 @@ const Header = ({ isDarkMode }) => {
             Hai! , I'm Shireen Shamil <Image src={assets.hand_icon} alt='Waving hand' className='w-7 animate-wave' />
           </motion.h3>
 
-          <motion.h1
+          {/* <motion.h1
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.4 }}
             className='text-3xl sm:text-4xl lg:text-[50px] font-bold font-Outfit leading-tight text-gray-900 dark:text-white'
           >
             Software Engineer <br className="hidden sm:inline" /> based in Sri Lanka.
-          </motion.h1>
+          </motion.h1> */}
 
           <motion.p
             initial={{ opacity: 0, y: 30 }}
