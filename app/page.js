@@ -42,7 +42,7 @@ export default function Home() {
       <Navbar isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
       <Header isDarkMode={isDarkMode} />
       {/* Portfolio Stats Section */}
-      <section className="portfolio-stats py-8 dark:bg-darkTheme text-gray-900 dark:text-gray-100 transition-colors duration-300">
+      <section className="portfolio-stats py-8 text-gray-900 dark:text-gray-100 transition-colors duration-300">
        
         <div className="stats-grid flex flex-wrap justify-center gap-10 px-4">
           {/* Using the AnimatedNumber component */}

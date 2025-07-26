@@ -7,7 +7,7 @@ import { achievements } from '@/assets/assets';
 
 const Achievements = () => {
   return (
-    <div id="achievements" className="py-16 px-4 sm:px-6 md:px-10 dark:bg-darkTheme">
+    <div id="achievements" className="py-16 px-4 sm:px-6 md:px-10">
       <h2 className="text-3xl sm:text-4xl font-bold text-center font-Ovo text-blue-900 dark:text-white mb-14">
         My Achievements
       </h2>
@@ -58,7 +58,7 @@ const Achievements = () => {
                 </div>
 
                 {/* Timeline Card */}
-                <div className="mt-10 md:mt-0 w-full sm:w-[90vw] max-w-sm sm:max-w-md md:w-[90%] bg-white/30 dark:bg-darkCard backdrop-blur-lg p-4 sm:p-6 rounded-3xl shadow-2xl border dark:border-white border-blue-200">
+                <div className="mt-10 md:mt-0 w-full sm:w-[90vw] max-w-sm sm:max-w-md md:w-[90%] bg-white/30 dark:bg-darkTheme backdrop-blur-lg p-4 sm:p-6 rounded-3xl shadow-2xl border dark:border-white border-blue-200">
                   <h3 className="text-lg sm:text-xl font-bold text-blue-900 dark:text-white mb-3">
                     {item.title}
                   </h3>

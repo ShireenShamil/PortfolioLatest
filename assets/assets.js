@@ -71,9 +71,11 @@ import github_icon_white from './github_white.png';
 import github_icon from './github_icon.png';
 import SereniCraft_icon from './SereniCraft.jpg';
 import portfolio from './portfolio.png'
+import bgdark from './bg-dark.png';
 
 export const assets = {
   user_image,
+  bgdark,
   code_icon,
   code_icon_dark,
   edu_icon,

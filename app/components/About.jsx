@@ -119,7 +119,7 @@ const About = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
-      className="max-w-6xl lg:mt-30 lg:mb-30 mx-auto px-6 sm:px-10 md:px-16 py-10 rounded-3xl shadow-xl dark:bg-gray-900/70 backdrop-blur-lg"
+      className="max-w-6xl lg:mt-30 lg:mb-30 mx-auto px-6 sm:px-10 md:px-16 py-10 rounded-3xl shadow-xl backdrop-blur-lg"
     >
       <h2 className="text-4xl sm:text-5xl mb-10 font-extrabold text-blue-900 dark:text-white dark-text-bold text-center tracking-wide drop-shadow-md">
         About Me

@@ -60,7 +60,7 @@ const Header = ({ isDarkMode }) => {
               className='px-7 py-3 rounded-full bg-black text-white dark:bg-white dark:text-black hover:scale-105 transition-transform duration-300 flex items-center gap-2 shadow-md'
             >
               Contact Me
-              <Image src={assets.right_arrow_white} alt='Arrow Icon' className='w-4' />
+              <Image src={isDarkMode ? assets.right_arrow_bold : assets.right_arrow_white} alt='Arrow Icon' className='w-4' />
             </motion.a>
 
             <motion.a
@@ -151,7 +151,8 @@ const Header = ({ isDarkMode }) => {
             alt='Profile Image'
             className='lg:mr-15 rounded-full w-44 mt-5 lg:mt-3 sm:w-56 md:w-64 lg:w-90 border-2 sm:border-4 
   border-white 
-  shadow-[0_0_8px_2px_rgba(255,182,193,0.7)] sm:shadow-[0_0_15px_4px_rgba(255,182,193,0.7)]'
+  shadow-[0_0_8px_2px_rgba(255,182,193,0.7)] sm:shadow-[0_0_15px_4px_rgba(255,182,193,0.7)] dark:border-blue-800
+      dark:shadow-[0_0_20px_6px_rgba(59,130,246,0.7)]'
           />
         </motion.div>
       </div>

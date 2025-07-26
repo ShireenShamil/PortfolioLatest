@@ -39,7 +39,22 @@ export default function RootLayout({ children }) {
         </div>
 
         {/* Dark mode fallback background */}
-        <div className="fixed inset-0 -z-10 hidden dark:block bg-darkTheme" />
+        {/* Dark mode background image */}
+{/* Dark mode background image with dark blue overlay */}
+ <div className="fixed inset-0 -z-10 hidden dark:block">
+    <Image
+      src={assets.bgdark}
+      alt="Dark Background"
+      fill
+      className="object-cover opacity-90"
+      priority
+    />
+  </div>
+  {/* Dark blue overlay */}
+  {/* <div className="absolute inset-0 bg-blue-900/10 pointer-events-none" /> */}
+{/* </div> */}
+
+
 
         {children}
       </body>
