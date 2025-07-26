@@ -1,212 +1,221 @@
 'use client';
-import React, { useState, useEffect } from 'react';
-import { assets, infoList, toolsData } from '@/assets/assets';
-import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
 
-const About = ({ isDarkMode }) => {
-  const [openCardTitle, setOpenCardTitle] = useState(null);
-  const [openCardIndex, setOpenCardIndex] = useState(null);
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import {
+  FaGraduationCap,
+  FaCertificate,
+  FaUsers,
+  FaLanguage,
+  FaLaptopCode,
+} from 'react-icons/fa';
 
-  const handleCardToggle = (title, index) => {
-    if (openCardTitle === title) {
-      setOpenCardTitle(null);
-      setOpenCardIndex(null);
-    } else {
-      setOpenCardTitle(title);
-      setOpenCardIndex(index);
-    }
+const sections = [
+  { id: 'skills', label: 'Skills & Technologies', icon: <FaLaptopCode /> },
+  { id: 'education', label: 'Education', icon: <FaGraduationCap /> },
+  { id: 'certifications', label: 'Certifications', icon: <FaCertificate /> },
+  { id: 'volunteering', label: 'Volunteering', icon: <FaUsers /> },
+  { id: 'languages', label: 'Languages', icon: <FaLanguage /> },
+];
+
+const About = () => {
+  const [activeTab, setActiveTab] = useState('skills');
+
+  const intro = `Hi! I'm Shireen Shamil from Panadura, currently an undergraduate at the University of Moratuwa. I'm passionate about technology, design, and building useful digital products.`;
+
+  const skills = {
+    Languages: ['C', 'CSS3', 'JavaScript', 'Java', 'HTML5', 'PHP', 'Python', 'TypeScript'],
+    Frameworks: ['React', 'Next.js', 'Vue.js', 'TailwindCSS', 'Express', 'Redux', 'Socket.io', 'MUI'],
+    Databases: ['Postgres', 'MongoDB', 'MySQL', 'MicrosoftSQLServer'],
+    Cloud: ['AWS', 'Docker', 'Vercel', 'Cisco'],
+    Design: ['Adobe Acrobat Reader', 'Adobe XD', 'Figma', 'Gimp', 'Blender', 'Adobe Photoshop', 'Canva', 'Sketch'],
+    ML: ['TensorFlow', 'scikit-learn', 'PyTorch', 'Matplotlib', 'NumPy', 'Pandas'],
+    Tools: ['Git', 'GitHub', 'Jira', 'Postman', 'NPM', 'JWT', 'Anaconda'],
   };
 
-  const renderDetailsContent = (item) => (
-    <motion.div
-      initial={{ height: 0, opacity: 0 }}
-      animate={{ height: 'auto', opacity: 1 }}
-      exit={{ height: 0, opacity: 0 }}
-      transition={{ duration: 0.3, ease: 'easeInOut' }}
-      className="details-content text-left mt-4 pt-3 border-t border-gray-200 dark:border-gray-700 w-full box-border overflow-hidden"
-    >
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {Object.entries(item.more).map(([section, { icon, items }]) => (
-          <div
-            key={section}
-            className="bg-white dark:bg-white/10 rounded-lg p-3 shadow-sm border border-gray-100 dark:border-white/5 flex flex-col"
-          >
-            <div className="flex items-center gap-3 mb-2">
-              {icon && <Image src={icon} alt={section} width={24} height={24} />}
-              <h4 className="text-base font-semibold text-gray-700 dark:text-white">{section}</h4>
-            </div>
-            <ul className="flex flex-col gap-1">
-              {items.map(({ name, icon: itemIcon, link }, idx) => (
-                <li key={idx} className="flex items-center gap-2 text-sm text-gray-800 dark:text-gray-200">
-                  {itemIcon && <Image src={itemIcon} alt={name} width={20} height={20} className="flex-shrink-0" />}
-                  {link ? (
-                    <a
-                      href={link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-600 hover:underline dark:text-blue-400 font-medium"
-                    >
-                      {name}
-                    </a>
-                  ) : (
-                    <span className="font-medium">{name}</span>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-    </motion.div>
-  );
+  const education = [
+    {
+      degree: 'BSc in Information Technology',
+      school: 'University of Moratuwa',
+      year: '2021 - Present',
+      result: "Current GPA: 3.7 / 4.00 | L1S1 - 3.22 | L1S2 - 3.83 (Dean's List)| L2S1 - 3.8 (Dean's List)",
+    },
+    {
+      degree: 'Higher Diploma in English Language and Literature',
+      school: 'Aquinas College Of Higher Studies',
+      year: '2023 - 2025',
+      result: 'Result: Merit Pass',
+    },
+    {
+      degree: 'GCE A/L - Biological Science Stream',
+      school: 'Jeelan Navodya National Central College',
+      year: '2019 - 2021',
+      result: 'Z-Score: 1.75 | Result: 2AB',
+    },
+  ];
 
-  const getCols = () => {
-    if (typeof window !== 'undefined') {
-      if (window.innerWidth >= 1024) return 3;
-      if (window.innerWidth >= 640) return 2;
-    }
-    return 1;
-  };
+  const certifications = [
+    {
+      title: 'Supervised Machine Learning: Regression and Classification',
+      issuer: 'Coursera',
+      year: 2025,
+    },
+    {
+      title: 'Neural Networks and Deep Learning',
+      issuer: 'Coursera',
+      year: 2025,
+    },
+    {
+      title: 'Deloitte Australia - Data Analytics Job Simulation',
+      issuer: 'Deloitte',
+      year: 2025,
+    },
+    {
+      title: 'AWS Cloud Practitioner Essentials',
+      issuer: 'Amazon Web Services',
+      year: 2025,
+    },
+    {
+      title: 'React.js AI chatbot with OpenAI',
+      issuer: 'Udemy',
+      year: 2025,
+    },
+  ];
 
-  const [cols, setCols] = useState(getCols());
+  const volunteering = [
+    {
+      role: 'ICSC Ambassador - Sri Lanka',
+      org: 'International Computer Science Convention',
+      year: '2025 - Present',
+    },
+    {
+      role: 'Designer',
+      org: 'Rotaract Club of University of Moratuwa',
+      year: '2023',
+    },
+    {
+      role: 'Web Master',
+      org: 'Panadura Undergraduates Association',
+      year: '2023',
+    },
+    {
+      role: 'Blogger',
+      org: 'Medium',
+      year: '2024 - Present',
+    },
+  ];
 
-  useEffect(() => {
-    const handleResize = () => setCols(getCols());
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  const languages = [
+    { name: 'English', level: 'Fluent' },
+    { name: 'Sinhala', level: 'Fluent' },
+    { name: 'Tamil', level: 'Fluent' },
+    { name: 'Korean', level: 'Basic' },
+    { name: 'French', level: 'Basic' },
+  ];
 
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      transition={{ duration: 1 }}
       id="about"
-      className="w-full px-4 sm:px-[8%] py-10 scroll-mt-20"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
+      className="max-w-6xl mx-auto px-6 sm:px-10 md:px-16 py-10 rounded-3xl shadow-xl dark:bg-gray-900/70 backdrop-blur-lg"
     >
-      <motion.h4
-        initial={{ opacity: 0, y: -20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 0.3 }}
-        className="text-center mb-2 text-base sm:text-lg font-Ovo"
-      >
-        Introduction
-      </motion.h4>
-      <motion.h2
-        initial={{ opacity: 0, y: -20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.5 }}
-        className="text-center text-3xl sm:text-5xl font-Ovo"
-      >
+      <h2 className="text-4xl sm:text-5xl mb-10 font-extrabold text-blue-900 dark:text-white dark-text-bold text-center tracking-wide drop-shadow-md">
         About Me
-      </motion.h2>
+      </h2>
+      <p className="text-center text-black dark:text-white text-base sm:text-lg max-w-3xl mx-auto mb-10 leading-relaxed tracking-wide">
+        {intro}
+      </p>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="flex w-full flex-col lg:flex-row items-center gap-10 sm:gap-20 my-10 sm:my-20"
-      >
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6 }}
-          className="w-40 sm:w-56 md:w-72 rounded-3xl max-w-none"
-        >
-          <Image src={assets.user_image} alt="User" className="w-full rounded-3xl" />
-        </motion.div>
+      {/* Tabs Navigation */}
+      <nav className="flex flex-wrap gap-3 border-b border-blue-300 dark:border-blue-600 mb-10 sm:flex-nowrap sm:space-x-6 justify-center">
+        {sections.map(({ id, label, icon }) => (
+          <button
+            key={id}
+            onClick={() => setActiveTab(id)}
+            className={`flex items-center space-x-2 py-3 px-5 rounded-t-xl transition-all duration-300 font-semibold text-sm sm:text-base w-full sm:w-auto ${
+              activeTab === id
+                ? 'text-blue-900 dark:text-blue-300 border-b-4 border-blue-800 dark:border-blue-400 shadow-[0_4px_10px_rgb(219_39_119_/_0.3)]'
+                : 'text-blue-800 dark:text-gray-300 hover:text-blue-800 border-b-4 border-transparent hover:border-blue-800 dark:hover:border-blue-400'
+            }`}
+          >
+            <span className="text-xl sm:text-2xl">{icon}</span>
+            <span>{label}</span>
+          </button>
+        ))}
+      </nav>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="flex-1"
-        >
-          <p className="mb-8 sm:mb-10 font-Ovo text-sm sm:text-base max-w-2xl">
-            Hi, I'm Shireen Shamil — a passionate and curious individual who loves learning, creating, and growing. I enjoy working on meaningful projects, solving real-world problems, and constantly improving my skills.
-          </p>
-
-          <div className="relative">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 max-w-full">
-              {infoList.map((item, index) => {
-                const isOpen = openCardTitle === item.title;
-                return (
-                  <React.Fragment key={item.title}>
-                    <motion.li
-                      className={`border-[0.5px] border-gray-400 rounded-xl p-4 cursor-pointer duration-500
-                        hover:-translate-y-1 hover:[box-shadow:6px_6px_0_#000]
-                        dark:border-white dark:shadow-white dark:hover:bg-darkHover/50
-                        ${isOpen ? 'border-blue-500 shadow-lg' : ''}
-                      `}
-                      onClick={() => handleCardToggle(item.title, index)}
+      {/* Tabs Content */}
+      <section>
+        {activeTab === 'skills' && (
+          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
+            {Object.entries(skills).map(([category, techs]) => (
+              <div key={category} className="flex items-center flex-wrap gap-3 mb-6">
+                <h3 className="text-2xl font-semibold text-blue-800 dark:text-blue-300 whitespace-nowrap">{category}:</h3>
+                <div className="flex flex-wrap gap-3">
+                  {techs.map((tech, index) => (
+                    <motion.span
+                      key={`${tech}-${index}`}
+                      whileHover={{ scale: 1.1 }}
+                      className="cursor-pointer bg-white/30 dark:bg-gray-800/50 text-black dark:text-white rounded-full px-4 py-2 text-sm sm:text-base font-medium shadow-md hover:bg-gray-100 dark:hover:bg-gray-700 transition"
+                      title={tech}
                     >
-                      <div className="flex flex-col items-center">
-                        <Image
-                          src={isDarkMode ? item.iconDark : item.icon}
-                          alt={item.title}
-                          className="w-8 sm:w-10 mt-1"
-                        />
-                        <h3 className="my-2 sm:my-3 font-semibold text-gray-700 dark:text-white text-base sm:text-lg text-center">
-                          {item.title}
-                        </h3>
-                        <button className="px-6 py-2 sm:px-10 sm:py-3 border rounded-full border-gray-500 text-sm sm:text-base dark:bg-white dark:text-black">
-                          {isOpen ? 'Hide Details' : 'View Details'}
-                        </button>
-                      </div>
-                    </motion.li>
+                      {tech}
+                    </motion.span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </motion.div>
+        )}
 
-                    {(isOpen && ((index + 1) % cols === 0 || index === infoList.length - 1)) && (
-                      <div className="col-span-full">
-                        <AnimatePresence mode="wait">
-                          {openCardTitle === item.title && item.more && renderDetailsContent(item)}
-                        </AnimatePresence>
-                      </div>
-                    )}
-                  </React.Fragment>
-                );
-              })}
-              {openCardIndex !== null &&
-                !((openCardIndex + 1) % cols === 0 || openCardIndex === infoList.length - 1) && (
-                  <div className="col-span-full">
-                    <AnimatePresence mode="wait">
-                      {openCardTitle === infoList[openCardIndex].title &&
-                        infoList[openCardIndex].more &&
-                        renderDetailsContent(infoList[openCardIndex])}
-                    </AnimatePresence>
-                  </div>
-                )}
-                
-            </div>
-          </div>
+        {activeTab === 'education' && (
+          <motion.div className="flex flex-wrap justify-center gap-6 py-4" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
+            {education.map(({ degree, school, year, result }) => (
+              <article key={`${degree}-${school}`} className="min-w-[250px] max-w-xs bg-white/30 dark:bg-gray-800/50 rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow text-black dark:text-white">
+                <h4 className="font-bold text-2xl lg:text-xl lg:mb-2">{degree}</h4>
+                <p className="text-gray-700 dark:text-gray-300 text-lg">{school}</p>
+                <p className="italic">{year}</p>
+                <p className="text-gray-600 dark:text-gray-400 mt-2">{result}</p>
+              </article>
+            ))}
+          </motion.div>
+        )}
 
-          <motion.h4
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 1.3 }}
-            className="my-8 text-gray-700 font-Ovo dark:text-white/80 text-lg sm:text-xl"
-          >
-            Tools I use
-          </motion.h4>
-
-          <motion.ul
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 1.5 }}
-            className="flex items-center gap-4 flex-wrap"
-          >
-            {toolsData.map((tool, index) => (
-              <motion.li
-                whileInView={{ scale: 1.15 }}
-                key={index}
-                className="flex items-center justify-center w-10 sm:w-12 aspect-square border-2 border-gray-400 rounded-lg cursor-pointer duration-500 hover:-translate-y-1"
-              >
-                <Image src={tool} alt="tool" className="w-5 sm:w-7" />
-              </motion.li>
+        {activeTab === 'certifications' && (
+          <motion.ul className="list-disc list-inside space-y-5 text-black dark:text-white px-4 sm:px-8" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
+            {certifications.map(({ title, issuer, year }) => (
+              <li key={`${title}-${issuer}`} className="text-lg font-semibold hover:text-blue-900 dark:hover:text-blue-400 cursor-default transition-colors">
+                {title} <span className="font-normal text-gray-600 dark:text-gray-400">— {issuer} ({year})</span>
+              </li>
             ))}
           </motion.ul>
-        </motion.div>
-      </motion.div>
+        )}
+
+        {activeTab === 'volunteering' && (
+          <motion.ul className="grid grid-cols-1 sm:grid-cols-2 gap-6 px-4 sm:px-8" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
+            {volunteering.map(({ role, org, year }) => (
+              <li key={`${role}-${org}`} className="bg-white/30 dark:bg-gray-800/50 rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow text-black dark:text-white">
+                <p className="font-semibold text-xl">{role}</p>
+                <p className="text-gray-700 dark:text-gray-300 text-lg">{org}</p>
+                <p className="italic">{year}</p>
+              </li>
+            ))}
+          </motion.ul>
+        )}
+
+        {activeTab === 'languages' && (
+          <motion.div className="flex flex-col sm:flex-row sm:flex-nowrap gap-4 sm:gap-6 py-4 px-2" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
+            {languages.map(({ name, level }) => (
+              <div key={name} className="flex justify-between items-center bg-white/30 dark:bg-gray-800/50 px-6 py-3 rounded-xl shadow-md hover:shadow-lg transition-shadow text-black dark:text-white font-semibold text-lg sm:min-w-[140px] flex-shrink-0">
+                <span>{name}</span>
+                <span className="ml-4 font-medium text-base">{level}</span>
+              </div>
+            ))}
+          </motion.div>
+        )}
+      </section>
     </motion.div>
   );
 };
