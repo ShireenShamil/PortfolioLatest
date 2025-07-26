@@ -6,7 +6,7 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
   const [isScroll, setIsScroll] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  useEffect(() => {
+    useEffect(() => {
     const onScroll = () => {
       setIsScroll(window.scrollY > 50);
     };
@@ -55,7 +55,7 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
               alt="Toggle Dark Mode"
               className="w-6"
             />
-          </button>
+            </button>
 
           <a
             href="#contact"
@@ -80,7 +80,7 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
               alt="Menu"
               className="w-6"
             />
-          </button>
+            </button>
         </div>
       </nav>
 
@@ -96,7 +96,7 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
             alt="Close menu"
             className="w-5"
           />
-        </div>
+            </div>
 
         <li><a onClick={closeMenu} className="font-Ovo" href="#top">Home</a></li>
         <li><a onClick={closeMenu} className="font-Ovo" href="#about">About Me</a></li>
@@ -104,7 +104,7 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
         <li><a onClick={closeMenu} className="font-Ovo" href="#work">My Work</a></li>
         <li><a onClick={closeMenu} className="font-Ovo" href="#blog">My Blogs</a></li>
         <li><a onClick={closeMenu} className="font-Ovo" href="#contact">Contact Me</a></li>
-      </ul>
+        </ul>
     </>
   );
 };

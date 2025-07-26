@@ -124,6 +124,7 @@ const About = () => {
       <h2 className="text-4xl sm:text-5xl mb-10 font-extrabold text-blue-900 dark:text-white dark-text-bold text-center tracking-wide drop-shadow-md">
         About Me
       </h2>
+      
       <p className="text-center text-black dark:text-white text-base sm:text-lg max-w-3xl mx-auto mb-10 leading-relaxed tracking-wide">
         {intro}
       </p>
