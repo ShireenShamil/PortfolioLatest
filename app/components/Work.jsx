@@ -1,127 +1,172 @@
-import { assets, workData } from '@/assets/assets';
+import { workData } from '@/assets/assets';
 import Image from 'next/image';
-import React, { useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import ProjectDialog from './ProjectDialog';
 
-const ITEMS_SHOWN = 4;
+const VISIBLE_CARDS = 5;
 
 const Work = ({ isDarkMode }) => {
+  const total = workData.length;
+  const [centerIndex, setCenterIndex] = useState(0);
   const [selectedProject, setSelectedProject] = useState(null);
-  const [startIndex, setStartIndex] = useState(0);
-  const [direction, setDirection] = useState(0); // -1 for prev, 1 for next
 
-  const handleProjectClick = (project) => setSelectedProject(project);
-  const handleCloseDialog = () => setSelectedProject(null);
-
-  const totalProjects = workData.length;
-
-  const nextItem = () => {
-    setDirection(1);
-    // Circular increment: wrap back to 0 if exceeds length
-    setStartIndex((prev) => (prev + 1) % totalProjects);
+  // Calculate indexes to show around the center
+  const getVisibleIndexes = () => {
+    let indexes = [];
+    for (let i = -Math.floor(VISIBLE_CARDS / 2); i <= Math.floor(VISIBLE_CARDS / 2); i++) {
+      indexes.push((centerIndex + i + total) % total);
+    }
+    return indexes;
   };
 
-  const prevItem = () => {
-    setDirection(-1);
-    // Circular decrement: if prev is 0, wrap to last possible start index
-    setStartIndex((prev) => (prev - 1 + totalProjects) % totalProjects);
-  };
+  const visibleIndexes = getVisibleIndexes();
 
-  // To handle the slicing properly with circular logic:
-  // When the slice exceeds the array end, concatenate from start
-  let displayedProjects = [];
-  if (startIndex + ITEMS_SHOWN <= totalProjects) {
-    displayedProjects = workData.slice(startIndex, startIndex + ITEMS_SHOWN);
-  } else {
-    const firstPart = workData.slice(startIndex, totalProjects);
-    const secondPart = workData.slice(0, ITEMS_SHOWN - firstPart.length);
-    displayedProjects = firstPart.concat(secondPart);
-  }
+  // Handlers for navigation
+  const prev = () => setCenterIndex((c) => (c - 1 + total) % total);
+  const next = () => setCenterIndex((c) => (c + 1) % total);
+
+  // Keyboard navigation support
+  const containerRef = useRef(null);
+  useEffect(() => {
+    const handleKey = (e) => {
+      if (e.key === 'ArrowLeft') prev();
+      else if (e.key === 'ArrowRight') next();
+    };
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
+  }, []);
+
+  // Calculate style for each card based on position relative to center
+  const getCardStyle = (pos) => {
+    const absPos = Math.abs(pos);
+    const scale = pos === 0 ? 1 : 1 - absPos * 0.15;
+    const rotateY = pos * 25;
+    const translateX = pos * 180; // spacing for desktop
+    const opacity = pos === 0 ? 1 : 0.5;
+    const zIndex = 10 - absPos;
+
+    return {
+      scale,
+      rotateY,
+      x: translateX,
+      opacity,
+      zIndex,
+      transition: { type: 'spring', stiffness: 300, damping: 30 },
+      transformOrigin: pos < 0 ? 'right center' : 'left center',
+      cursor: pos === 0 ? 'pointer' : 'default',
+    };
+  };
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      transition={{ duration: 1 }}
-      id='work'
-      className='w-full px-[12%] py-10 scroll-mt-20'
+    <section
+      id="work"
+      className="max-w-7xl mx-auto py-24 px-8 select-none dark:text-white"
+      aria-label="Cover flow portfolio carousel"
+      ref={containerRef}
     >
-      <motion.h4 className='text-center mb-2 text-lg font-Ovo'>My Portfolio</motion.h4>
-      <motion.h2 className='text-center text-5xl font-Ovo'>My Latest Works</motion.h2>
+      <header className="text-center mb-12">
+        <motion.h4 className="text-center mb-2 text-lg font-Ovo">My Portfolio</motion.h4>
+        <motion.h2 className="text-center text-5xl font-Ovo">My Latest Works</motion.h2>
+        <motion.p className="text-center max-w-2xl mx-auto mt-5 mb-12 font-Ovo">
+          I offer full-stack web development services including responsive frontend design using React
+          and Tailwind CSS, seamless UI/UX design with tools like Figma, and robust backend development
+          using Node.js and Express.
+        </motion.p>
+      </header>
 
-      <motion.p className='text-center max-w-2xl mx-auto mt-5 mb-12 font-Ovo'>
-        I offer full-stack web development services including responsive frontend design using React and Tailwind CSS,
-        seamless UI/UX design with tools like Figma, and robust backend development using Node.js and Express.
-      </motion.p>
-
-      {/* Animation wrapper */}
-      <div className='overflow-hidden relative'>
-        <motion.div
-          key={startIndex}
-          initial={{ x: direction > 0 ? 100 : -100, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          exit={{ x: direction > 0 ? -100 : 100, opacity: 0 }}
-          transition={{ type: 'tween', duration: 0.5 }}
-          className='grid grid-cols-[repeat(auto-fit,_minmax(200px,_1fr))] gap-5 my-10 dark:text-black'
+      <div className="relative h-80 md:h-96 flex justify-center items-center perspective-[1200px]">
+        {/* Prev button on left side desktop */}
+        <button
+          onClick={prev}
+          aria-label="Previous project"
+          className="hidden md:flex absolute left-0 top-1/2 transform -translate-y-1/2 rounded-full px-2 py-3 shadow-lg
+            hover:bg-white/30 focus:outline-none focus:ring-4 focus:ring-rose-100 transition-transform duration-200 ease-in-out active:scale-95
+            z-20 font-semibold text-lg select-none w-24 h-12 rounded-full border hover:bg-gray-200 dark:hover:bg-darkHover flex items-center justify-center"
         >
-          <AnimatePresence mode='wait'>
-            {displayedProjects.map((project, index) => (
-              <motion.div
-                key={project.title}
-                className={`relative cursor-pointer group border-2 rounded-xl overflow-hidden
-                  border-blue-450 dark:border-white/60`}
-                onClick={() => handleProjectClick(project)}
-                layout
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
-              >
+          Prev
+        </button>
+
+        {visibleIndexes.map((idx, i) => {
+          const pos = i - Math.floor(VISIBLE_CARDS / 2);
+          const project = workData[idx];
+          const style = getCardStyle(pos);
+
+          return (
+            <motion.div
+              key={project.title}
+              role={pos === 0 ? 'button' : undefined}
+              tabIndex={pos === 0 ? 0 : -1}
+              aria-label={pos === 0 ? `Open project ${project.title}` : undefined}
+              onClick={() => pos === 0 && setSelectedProject(project)}
+              onKeyDown={(e) => {
+                if ((e.key === 'Enter' || e.key === ' ') && pos === 0) setSelectedProject(project);
+              }}
+              animate={{
+                scale: style.scale,
+                rotateY: style.rotateY,
+                x: style.x,
+                opacity: style.opacity,
+                zIndex: style.zIndex,
+              }}
+              transition={style.transition}
+              className={`absolute top-0 w-48 md:w-64 h-64 md:h-80 rounded-xl overflow-hidden bg-white dark:bg-gray-900 shadow-xl ring-2
+                ${pos === 0 ? 'ring-black dark:ring-white' : 'ring-transparent'} focus:outline-none focus:ring-4`}
+              style={{ transformOrigin: style.transformOrigin, cursor: style.cursor }}
+            >
+              <div className="relative w-full h-full">
+                <Image src={project.bgImage} alt={project.title} fill style={{ objectFit: 'cover' }} priority />
                 <div
-                  className="w-full h-full aspect-square bg-no-repeat bg-cover bg-center"
-                  style={{ backgroundImage: `url(${project.bgImage})` }}
+                  className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4"
+                  style={{ pointerEvents: 'none' }}
                 >
-                  {/* Content */}
-                  <div className='bg-white w-10/12 rounded-md absolute bottom-5 left-1/2 -translate-x-1/2 py-3 px-5 flex items-center justify-between duration-500 group-hover:bottom-7'>
-                    <div>
-                      <h2 className='font-semibold'>{project.title}</h2>
-                    </div>
-                  </div>
+                  <h3 className="text-white text-lg md:text-xl font-semibold truncate">{project.title}</h3>
                 </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </motion.div>
+              </div>
+            </motion.div>
+          );
+        })}
+
+        {/* Next button on right side desktop */}
+        <button
+          onClick={next}
+          aria-label="Next project"
+          className="hidden md:flex absolute right-0 top-1/2 transform -translate-y-1/2 rounded-full px-2 py-3 shadow-lg
+            hover:bg-white/30 focus:outline-none focus:ring-4 focus:ring-rose-100 transition-transform duration-200 ease-in-out active:scale-95
+            z-20 font-semibold text-lg select-none w-24 h-12 rounded-full border hover:bg-gray-200 dark:hover:bg-darkHover flex items-center justify-center"
+        >
+          Next
+        </button>
       </div>
 
-      {/* Slide Controls */}
-      <div className='flex justify-center gap-4 my-8'>
-      {/* Slide Controls */}
-<div className='flex justify-center gap-4 my-8'>
-  <button
-    onClick={prevItem}
-    className='w-24 h-12 rounded-full border hover:bg-gray-200 dark:hover:bg-darkHover flex items-center justify-center'
-  >
-    Previous
-  </button>
-  <button
-    onClick={nextItem}
-    className='w-24 h-12 rounded-full border hover:bg-gray-200 dark:hover:bg-darkHover flex items-center justify-center'
-  >
-    Next
-  </button>
-</div>
-
+      {/* Mobile prev/next buttons below carousel */}
+      <div className="flex justify-center gap-8 mt-10 md:hidden">
+        <button
+          onClick={prev}
+          aria-label="Previous project"
+          className='w-24 h-12 rounded-full border hover:bg-gray-200 dark:hover:bg-darkHover flex items-center justify-center'
+        >
+          Prev
+        </button>
+        <button
+          onClick={next}
+          aria-label="Next project"
+           className='w-24 h-12 rounded-full border hover:bg-gray-200 dark:hover:bg-darkHover flex items-center justify-center'
+        >
+          Next
+        </button>
       </div>
 
-      {/* Dialog */}
-      {selectedProject && (
-        <ProjectDialog
-          project={selectedProject}
-          onClose={handleCloseDialog}
-          isDarkMode={isDarkMode}
-        />
-      )}
-    </motion.div>
+      <AnimatePresence>
+        {selectedProject && (
+          <ProjectDialog
+            project={selectedProject}
+            onClose={() => setSelectedProject(null)}
+            isDarkMode={isDarkMode}
+          />
+        )}
+      </AnimatePresence>
+    </section>
   );
 };
 
