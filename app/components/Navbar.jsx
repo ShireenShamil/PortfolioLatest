@@ -1,7 +1,13 @@
 import { assets } from '@/assets/assets';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
+import { assets } from '@/assets/assets';
+import Image from 'next/image';
+import React, { useEffect, useState } from 'react';
 
+const Navbar = ({ isDarkMode, setIsDarkMode }) => {
+  const [isScroll, setIsScroll] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 const Navbar = ({ isDarkMode, setIsDarkMode }) => {
   const [isScroll, setIsScroll] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
