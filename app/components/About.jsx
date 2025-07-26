@@ -135,7 +135,7 @@ const About = ({ isDarkMode }) => {
                   <React.Fragment key={item.title}>
                     <motion.li
                       className={`border-[0.5px] border-gray-400 rounded-xl p-4 cursor-pointer duration-500
-                        hover:-translate-y-1 hover:[box-shadow:6px_6px_0_#000] hover:[background-color:#fcf4ff]
+                        hover:-translate-y-1 hover:[box-shadow:6px_6px_0_#000]
                         dark:border-white dark:shadow-white dark:hover:bg-darkHover/50
                         ${isOpen ? 'border-blue-500 shadow-lg' : ''}
                       `}
