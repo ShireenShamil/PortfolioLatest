@@ -18,6 +18,7 @@ const ova = Ovo({
 export const metadata = {
   title: "Portfolio - Shireen Shamil",
   description: "",
+  viewport: "width=device-width, initial-scale=1.0", // ✅ Add this line here
 };
 
 export default function RootLayout({ children }) {
