@@ -27,7 +27,7 @@ const Achievements = () => {
 
       <div className="relative max-w-7xl mx-auto">
         {/* Center vertical line (only on md+) */}
-        <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-black dark:bg-yellow-400 rounded-full"></div>
+        <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-black dark:bg-white rounded-full"></div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-y-20 md:gap-y-28 gap-x-12 md:gap-x-40 relative z-10">
           {achievements.map((item, index) => {
@@ -46,7 +46,7 @@ const Achievements = () => {
                 {/* Dot badge */}
                 <div
                   className={`absolute top-[-2rem] md:top-5 w-12 h-12 sm:w-14 sm:h-14 rounded-full border-4 overflow-hidden bg-white/30 dark:bg-darkCard z-20 shadow-xl
-                    ${isLeft ? 'md:right-[-2.5rem]' : 'md:left-[-2.5rem]'} border-blue-900 dark:border-yellow-400`}
+                    ${isLeft ? 'md:right-[-2.5rem]' : 'md:left-[-2.5rem]'} border-blue-900 dark:border-white`}
                 >
                   <Image
                     src={item.image}
@@ -59,7 +59,7 @@ const Achievements = () => {
 
                 {/* Timeline Card */}
                 <div className="mt-10 md:mt-0 w-full sm:w-[90vw] max-w-sm sm:max-w-md md:w-[90%] bg-white/30 dark:bg-darkCard backdrop-blur-lg p-4 sm:p-6 rounded-3xl shadow-2xl border dark:border-white border-blue-200">
-                  <h3 className="text-lg sm:text-xl font-bold text-blue-900 dark:text-yellow-300 mb-3">
+                  <h3 className="text-lg sm:text-xl font-bold text-blue-900 dark:text-white mb-3">
                     {item.title}
                   </h3>
                   <p className="text-xs sm:text-sm leading-relaxed text-gray-700 dark:text-gray-300 mb-4">
@@ -71,7 +71,7 @@ const Achievements = () => {
                       href={item.certificateLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-block text-xs font-semibold bg-blue-900 text-white dark:bg-yellow-300 dark:text-black px-4 py-1.5 rounded-full hover:scale-105 transition-transform"
+                      className="inline-block text-xs font-semibold bg-blue-900 text-white dark:bg-white dark:text-black px-4 py-1.5 rounded-full hover:scale-105 transition-transform"
                     >
                       View Certificate
                     </a>
