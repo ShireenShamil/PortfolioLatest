@@ -18,7 +18,11 @@ const Achievements = () => {
         transition={{ duration: 0.5, delay: 0.7 }}
         className="text-center max-w-2xl mx-auto mt-5 mb-12 font-Ovo"
       >
-        I have actively participated in university-level and national competitions that challenged both my technical and creative skills. These include hackathons, UI/UX design contests, and coding challenges that strengthened my problem-solving under pressure. These experiences improved my teamwork, innovation, and adaptability, building both confidence and practical expertise.
+        I have actively participated in university-level and national competitions that challenged
+        both my technical and creative skills. These include hackathons, UI/UX design contests, and
+        coding challenges that strengthened my problem-solving under pressure. These experiences
+        improved my teamwork, innovation, and adaptability, building both confidence and practical
+        expertise.
       </motion.p>
 
       <div className="relative max-w-7xl mx-auto">
@@ -35,14 +39,14 @@ const Achievements = () => {
                 initial={{ opacity: 0, x: isLeft ? -40 : 40 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className={`relative flex ${isLeft ? 'justify-end' : 'justify-start'} items-start ${
-                  !isLeft ? 'mt-12 md:mt-16' : ''
-                }`}
+                className={`relative flex flex-col md:flex-row ${
+                  isLeft ? 'md:justify-end' : 'md:justify-start'
+                } items-start ${!isLeft ? 'md:mt-16' : ''}`}
               >
                 {/* Dot badge */}
                 <div
-                  className={`absolute top-5 w-12 h-12 sm:w-14 sm:h-14 rounded-full border-4 overflow-hidden bg-white/30 dark:bg-darkCard z-20 shadow-xl
-                    ${isLeft ? 'right-[-2.5rem]' : 'left-[-2.5rem]'} border-blue-900 dark:border-yellow-400`}
+                  className={`absolute top-[-2rem] md:top-5 w-12 h-12 sm:w-14 sm:h-14 rounded-full border-4 overflow-hidden bg-white/30 dark:bg-darkCard z-20 shadow-xl
+                    ${isLeft ? 'md:right-[-2.5rem]' : 'md:left-[-2.5rem]'} border-blue-900 dark:border-yellow-400`}
                 >
                   <Image
                     src={item.image}
@@ -54,7 +58,7 @@ const Achievements = () => {
                 </div>
 
                 {/* Timeline Card */}
-                <div className="w-[80vw] sm:w-[90vw] max-w-sm sm:max-w-md md:w-[90%] bg-white/30 dark:bg-darkCard backdrop-blur-lg p-4 sm:p-6 rounded-3xl shadow-2xl border dark:border-white border-blue-200">
+                <div className="mt-10 md:mt-0 w-full sm:w-[90vw] max-w-sm sm:max-w-md md:w-[90%] bg-white/30 dark:bg-darkCard backdrop-blur-lg p-4 sm:p-6 rounded-3xl shadow-2xl border dark:border-white border-blue-200">
                   <h3 className="text-lg sm:text-xl font-bold text-blue-900 dark:text-yellow-300 mb-3">
                     {item.title}
                   </h3>
