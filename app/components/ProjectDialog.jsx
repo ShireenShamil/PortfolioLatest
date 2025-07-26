@@ -65,7 +65,7 @@ const ProjectDialog = ({ project, onClose, isDarkMode }) => {
                 href={project.liveLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-2 text-xs font-semibold text-white bg-indigo-500 hover:bg-indigo-600 transition rounded-full shadow"
+                className="px-4 py-2 text-xs font-semibold text-white bg-blue-700 hover:bg-blue-900 transition rounded-full shadow"
               >
                 Live Demo
               </a>
