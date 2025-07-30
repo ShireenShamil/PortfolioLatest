@@ -38,7 +38,7 @@ const About = () => {
       degree: 'BSc in Information Technology',
       school: 'University of Moratuwa',
       year: '2021 - Present',
-      result: "Current GPA: 3.7 / 4.00 | L1S1 - 3.22 | L1S2 - 3.83 (Dean's List)| L2S1 - 3.8 (Dean's List)",
+      result: "Current GPA: 3.7 / 4.00 | Dean's List - L1S2 & L2S1",
     },
     {
       degree: 'Higher Diploma in English Language and Literature',
