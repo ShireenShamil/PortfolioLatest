@@ -6,13 +6,12 @@ import { motion } from 'framer-motion';
 
 const AnimatedNumber = ({ end, label, duration = 2.5, prefix = '', suffix = '' , delay = 0 }) => {
   const { ref, inView } = useInView({
-    triggerOnce: true, // Only trigger animation once when it comes into view
-    threshold: 0.5,    // Trigger when 50% of the component is visible
+    triggerOnce: true, 
+    threshold: 0.5,    
   });
 
   return (
-    // Outer container with responsive padding, margin, dark mode, shadow, etc.
-    // The `dark:` prefix must be in className, not inline style.
+   
     <motion.div
       ref={ref}
       className="
